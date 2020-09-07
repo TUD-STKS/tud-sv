@@ -1,2 +1,2 @@
 # tud-sv
-Zusatzmaterial zur Vorlesung Signalvearbeitung im Modul Signaltheorie
+Zusatzmaterial zur Vorlesung Signalverarbeitung im Modul Signaltheorie
