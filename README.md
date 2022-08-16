@@ -1,6 +1,5 @@
 # tud-sv
-Zusatzmaterial zur Vorlesung Signalverarbeitung im Modul Signaltheorie ABCD
-df
+Zusatzmaterial zur Vorlesung Signalverarbeitung im Modul Signaltheorie
 
 
 ## Inhalt
