@@ -1,0 +1,4 @@
+Das ist ein Testdokument um zu sehen, ob Git Desktop auf das richtige Repository commitet.
+
+Viele Grüße,
+Bernhard Schrank
