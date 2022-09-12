@@ -7,7 +7,7 @@ author: SHK
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
-#  execute_notebooks: force
+  execute_notebooks: force
 # includes source to output
   echo: true
 
@@ -29,6 +29,8 @@ repository:
 launch_buttons:
   binder_url: "https://mybinder.org"
   thebe: true
+  notebook_interface: "classic"
+
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:
