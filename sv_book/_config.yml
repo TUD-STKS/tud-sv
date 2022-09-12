@@ -33,3 +33,6 @@ parse:
   myst_enable_extensions:
     # enables to pars raw html code for included images
     - html_image
+    - html_admonition
+    - deflist
+    - linkify

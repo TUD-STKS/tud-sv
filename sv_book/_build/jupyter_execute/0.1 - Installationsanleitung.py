@@ -133,7 +133,7 @@ plt.show()                          # Plot zeigen
 # 
 # Als Beispiel für einen nicht ausführbaren Code in dem `Binder`-Projekt ist die folgende Zelle mit dem Modul `pandas`, das nicht mitinstalliert wurde (und im Weiteren auch nicht benötigt wird). 
 
-# In[ ]:
+# In[3]:
 
 
 # Starten Sie den Code, indem sie die Zelle auswählen und den Run-Button drücken

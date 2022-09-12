@@ -15,7 +15,7 @@
 # ## Inhalt  
 # <table style="width:300px; border: 1px solid black; display: inline-block">
 #     <tr>
-#     <td style="text-align:right"><img src='./img/IMG-graph.png' style="float:left"></td>
+#     <td style="text-align:right"><img src="img/IMG-graph.png" style="float:left"></td>
 #     <td style="text-align:left" width=128px><a style="color:black; font-size:14px; font-weight:bold; text-decoration:none" href='#signalrep'>1. Signalrepräsentation</a>
 #         </td>
 #     </tr>

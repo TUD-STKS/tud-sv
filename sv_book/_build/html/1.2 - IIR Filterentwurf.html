@@ -162,50 +162,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Thema-2-Messung der Übertragungsfunktion
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="2.1%20-%20Sweep.html">
-   2.1 - Sweep
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2.1%20-%20Sweep_solved.html">
-   2.1 - Sweep
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2.2%20-%20LPC.html">
-   2.2 - Linear Predictive Coding
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2.2%20-%20LPC_solved.html">
-   2.2 - Linear Predictive Coding
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Thema-3-Analye nichtstationärer Signale
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="3.1%20-%20STFT.html">
-   3.1 - Short Time Fourier Transformation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="3.1%20-%20STFT_solved.html">
-   3.1 - Short Time Fourier Transformation
-  </a>
- </li>
-</ul>
 
     </div>
 </nav></div>
@@ -466,7 +422,7 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="iir-filterentwurf">
 <h1>1.2 - IIR-Filterentwurf<a class="headerlink" href="#iir-filterentwurf" title="Permalink to this headline">#</a></h1>
-<a class="reference internal image-reference" href="img/dsp.jpg"><img alt="img/dsp.jpg" src="img/dsp.jpg" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="_images/dsp.jpg"><img alt="_images/dsp.jpg" src="_images/dsp.jpg" style="width: 400px;" /></a>
 <section id="inhalt">
 <h2>Inhalt<a class="headerlink" href="#inhalt" title="Permalink to this headline">#</a></h2>
 <table style="width:256px; border: 1px solid black; display: inline-block">
@@ -496,7 +452,7 @@ title="Print to PDF"
   </tr>  
 </table>
 <hr class="docutils" />
-<p><a id='intro'></a><div><img alt="img/IMG-intro.png" src="img/IMG-intro.png" /><h2 style="position: relative; top: 6px; left: 6px">1. Wiederholung </h2></div></p>
+<p><a id='intro'></a><div><img alt="_images/IMG-intro.png" src="_images/IMG-intro.png" /><h2 style="position: relative; top: 6px; left: 6px">1. Wiederholung </h2></div></p>
 <p>Im Notebook 1.1 haben wir die Implementierung von FIR-Filtern diskutiert. FIR-Filter bieten viele Vorteile wie einen linearen Phasengang, außerdem sind sie immer stabil. Zur Erinnerung: eine typische FIR hat die Differenzengleichung
 \begin{equation*}
 y_{\text{FIR}}(k) = \sum_{i=0}^{M}a_{i} x(k-i).
@@ -506,7 +462,7 @@ Je länger der Filter/je höher die Filterordnung ($ M\rightarrow \infty $), des
 y_{\text{IIR}}(k) = \sum_{i=0}^{M} a_{i} x(k-i) - \underbrace{\sum_{i=0}^{N} b_{i} y(k-i)}_{\text{neuer, rekursiver Teil}}
 \end{equation*}</p>
 <p>Die grundlegende Struktur von IIR-Filtern und dessen Darstellungsformen sind ebenfalls zur Erinnerung in der folgenden Abbildung noch einmal zusammengefasst (siehe dazu auch die Vorlesungsfolien Thema1-Filter sowie die erste Übung).</p>
-<p><img alt="iir" src="img/iir.png" /></p>
+<p><img alt="iir" src="_images/iir.png" /></p>
 <p><strong>Der Unterschied zwischen FIR- und IIR-Systemen:</strong></p>
 <ul class="simple">
 <li><p>FIR:</p>
@@ -554,7 +510,7 @@ y_{\text{IIR}}(k) = \sum_{i=0}^{M} a_{i} x(k-i) - \underbrace{\sum_{i=0}^{N} b_{
 </div>
 </div>
 </div>
-<p><a id='butterworth'></a><div><img alt="img/IMG-butterworth.png" src="img/IMG-butterworth.png" /><h2 style="position: relative; top: 6px; left: 6px">2. Butterworth-Filter </h2></div></p>
+<p><a id='butterworth'></a><div><img alt="_images/IMG-butterworth.png" src="_images/IMG-butterworth.png" /><h2 style="position: relative; top: 6px; left: 6px">2. Butterworth-Filter </h2></div></p>
 <p>Butterworthfilter besitzen einen maximal steilen Übergang zwischen Durchlass- und Sperrbereich bei absolut glattem Amplitudengang im Duchlassbereich (kein Überschwingen). Ein analoger Butterworth-Filter besitzt keine Nullstellen (sog. “All-Pole-Filter”), bei der Transformation zum Digitalfilter kommen aber - abhängig von der Transformation (Bilinear, Pol-Nullstellen-Abbildung z.B.) -Nullstellen hinzu.</p>
 <p>In diesem Abschnitt soll ein Bandpassfilter mittels <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.butter.html"><code class="docutils literal notranslate"><span class="pre">signal.butter()</span></code></a> entworfen. Die Abtastfrequenz $f_s$ beträgt 1000 Hz. Frequenzkomponenten unter 130 Hz und über 440 Hz sollen herausgefiltert werden, d.h., die Grenzfrequenzen $f_{c,\text{lower}}$ und $f_{c,\text{upper}}$ des Bandpassfilters betragen 130 Hz bis 440 Hz. Das Passbandintervall ist dann $f_{\text{pass}} = [130, 440],\mathrm{Hz}$. Die Einheit der Frequenzgrenzen in <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.butter.html"><code class="docutils literal notranslate"><span class="pre">signal.butter()</span></code></a> richten sich nach der Einheit der Abtastfrequenz, die als Argument übergeben wird. Oft werden sämtliche Frequenzen in $\Omega/\pi$ angegeben, wodurch die Frequenzachse von 0 Hz bis zur Nyquistfrequenz ($f_s/2$) auf den Bereich $[0, 1]$ normiert ist. z.T. es ist aber übersichtlicher, wenn die Frequenzachse weiterhin in Hz oder rad/s dargestellt ist. Unabhängig von der Wahl der Einheit für die Frequenzachse können die Filterpolynome jederzeit in eine andere Einheit skaliert werden, d.h. es ist nur wichtig, dass Abtast- und Grenzfrequenz(en) zusammenpassen. Gerade bei höheren Filterordnungen und hohen Abtastfrequenzwerten kann es zu numerischen Problem kommen, da die Polynomkoeffizienten schnell explodieren.</p>
 <p>Zur graphischen Darstellung werden folgende Objekte verwendet:</p>
@@ -645,7 +601,7 @@ y_{\text{IIR}}(k) = \sum_{i=0}^{M} a_{i} x(k-i) - \underbrace{\sum_{i=0}^{N} b_{
 </div>
 </div>
 <hr class="docutils" />
-<p><a id='chebyshev'></a><div><img alt="img/IMG-chebyshev.png" src="img/IMG-chebyshev.png" /><h2 style="position: relative; top: 6px; left: 6px">3. Chebyshev-Filter </h2></div></p>
+<p><a id='chebyshev'></a><div><img alt="_images/IMG-chebyshev.png" src="_images/IMG-chebyshev.png" /><h2 style="position: relative; top: 6px; left: 6px">3. Chebyshev-Filter </h2></div></p>
 <p>Beim Chebychev-Filter fällt die Amplitude im Übergangsbereich steiler ab als beim Butterworth-Filter. Dieser Vorteil wird durch eine gewisse
 (einstellbare) Welligkeit im Durchlassbereich erkauft (unterhalb der Grenzfrequenz).</p>
 <p>Ähnlich wie Butterworth-Filterentwurf, gibt es auch für den Chebyshev-Filterentwurf Funktionen zur Ordnungselektion, daher können diese ganz analog dazu verwenden werden. Alle Details können Sie unter <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/signal.html">scipy.signal</a> finden.</p>
@@ -829,7 +785,7 @@ Der Chebyshev-Filter des Typ 2 soll nun genutzt werden, um einen Tiefpass mit de
 </div>
 </div>
 </div>
-<p><a id='verz'></a><div><img alt="img/IMG-emphasis.jpg" src="img/IMG-emphasis.jpg" /><h2 style="position: relative; top: 6px; left: 6px">4. Vorverzerrung </h2></div></p>
+<p><a id='verz'></a><div><img alt="_images/IMG-emphasis.jpg" src="_images/IMG-emphasis.jpg" /><h2 style="position: relative; top: 6px; left: 6px">4. Vorverzerrung </h2></div></p>
 <p>Wenn ein analoger Filter $H_{lp}$ mit einer festgelegten Grenzfrequenz mittels der Bilineartransformation in einen digitalen Filter $Hd_{lp}$ überführt werden soll, wird diese durch die Achsenverzerrung von der s- in die z-Ebene verzerrt und die Grenzfrequenz des Digitalfilters ist u.U. deutlich daneben (die Verzerrung wird stärker für höhere Grenzfrequenzen). Aus diesem Grund wird die analoge Grenzfrequenz zunächst <em>vorverzerrt</em>, danach die Filterkoeffizienten berechnet und anschließend der analoge Filter in einen digitalen Filter transformiert. Für die Transformation in den z-Bereich kann die <span class="xref myst">signal.cont2discrete()</span> Funktion verwendet werden.</p>
 <p>Im Nachfolgenden wird zunächst ein analoger Butterworth-Filter 3. Ordnung erstellt mit der bereits kennengelernten Funktion <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.butter.html">signal.butter()</a>, wobei die analog=True flag gesetzt werden muss. Zum Plotten des analogen Frequenzganges eignen sich die <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.TransferFunction.html">signal.TransferFunction()</a> und <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.bode.html">signal.bode()</a> Funktionen.</p>
 <p>Für die Vorverzerrung wird die neue Grenzfrequenz $\omega_c^{\prime}$ über den in der Vorlesung kennengelernten Ausdruck

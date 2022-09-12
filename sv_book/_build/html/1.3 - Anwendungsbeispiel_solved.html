@@ -52,7 +52,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="2.1 - Sweep" href="2.1%20-%20Sweep.html" />
     <link rel="prev" title="1.3 - Anwendungsbeispiel" href="1.3%20-%20Anwendungsbeispiel.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -159,50 +158,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    1.3 -  Anwendungsbeispiel
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Thema-2-Messung der Übertragungsfunktion
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="2.1%20-%20Sweep.html">
-   2.1 - Sweep
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2.1%20-%20Sweep_solved.html">
-   2.1 - Sweep
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2.2%20-%20LPC.html">
-   2.2 - Linear Predictive Coding
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2.2%20-%20LPC_solved.html">
-   2.2 - Linear Predictive Coding
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Thema-3-Analye nichtstationärer Signale
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="3.1%20-%20STFT.html">
-   3.1 - Short Time Fourier Transformation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="3.1%20-%20STFT_solved.html">
-   3.1 - Short Time Fourier Transformation
   </a>
  </li>
 </ul>
@@ -542,7 +497,7 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="anwendungsbeispiel">
 <h1>1.3 -  Anwendungsbeispiel<a class="headerlink" href="#anwendungsbeispiel" title="Permalink to this headline">#</a></h1>
-<a class="reference internal image-reference" href="img/audio.jpg"><img alt="img/audio.jpg" src="img/audio.jpg" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="_images/audio.jpg"><img alt="_images/audio.jpg" src="_images/audio.jpg" style="width: 400px;" /></a>
 <p>Diese Notebook baut auf die beiden Vorherigen auf, in denen der FIR und IIR Filterentwurf mit verschiedenen Methoden ausführlich behandelt wurde.</p>
 <p>Im Folgenden soll ein Praxisbeispiel für einer Filterantwendung mit konkreten Randbedingungen bearbeitet werden. Auf ein Audiosignal (akustik.wav, zu finden im Ordner ‘data’) sollen zunächst Störsignale aufaddiert werden, die anschließend mit verschiedenen Filtern wieder entfernt werden, um das ursprüngliche Signal wiederherzustellen. Dabei sollen die Vor- und Nachteile der verschiedenen Filtertypen aufgezeigt werden.</p>
 <p>Außerdem sollen einige grundlegende Python Module zur Verarbeitung speziell von Audiosignalen vorgestellt und angewendet werden.</p>
@@ -857,7 +812,7 @@ Das Modul ermöglicht es, sowohl wav-Dateien als auch NumPy-Arrays abgespielt zu
 </div>
 <p>Mit <code class="docutils literal notranslate"><span class="pre">corruptedAudioSignal</span></code> beziehungsweise <code class="docutils literal notranslate"><span class="pre">corruptedAudioSignal_windowed</span></code> wurde jetzt ein mit einem Sinuston gestörtes Audiosignal erzeugt. Im Folgenden wird nun versucht, mittels der in Notebook 1.1 und 1.2 kennengelernten Filter diese Störung zu filtern und wieder ein dem Original ähnliches Audiosignal zu rekonstruieren.</p>
 <hr class="docutils" />
-<p><a id='fir'></a><div><img alt="img/IMG-fir.jpg" src="img/IMG-fir.jpg" /><h2 style="position: relative; top: 6px; left: 6px">2. FIR-Filterung </h2></div></p>
+<p><a id='fir'></a><div><img alt="_images/IMG-fir.jpg" src="_images/IMG-fir.jpg" /><h2 style="position: relative; top: 6px; left: 6px">2. FIR-Filterung </h2></div></p>
 </section>
 <section id="fir-filter-mittels-idft">
 <h3>2.1 FIR-Filter mittels IDFT<a class="headerlink" href="#fir-filter-mittels-idft" title="Permalink to this headline">#</a></h3>
@@ -1005,7 +960,7 @@ Das Modul ermöglicht es, sowohl wav-Dateien als auch NumPy-Arrays abgespielt zu
 <p>Um einen Bandsperrfilter mit hohem Knick und engem Frequenzbereich zu erzeugen, um nur das Sinussignal zu entfernen, benötigt der FIR-Filter eine große Ordnungszahl. Das bedeutet, dass man für die Umsetzung des Filters viel Speicherplatz benötigt und einen goßen Rechenaufwand hat, was für eine niedrige Effizienz spricht.</p>
 <p>Um zu analysieren, ob IIR-Filter eine bessere Alternative darstellen, wenn es um effizientes Filterdesign geht, soll nun im nächsten Kapitel dasselbe Signal <code class="docutils literal notranslate"><span class="pre">corruptedAudioSignal</span></code> bzw. <code class="docutils literal notranslate"><span class="pre">corruptedAudioSignal_windowed</span></code> mittels der in Notebook 1.2 kennengelernten Filter und Filterdesign bereinigt werden.</p>
 <hr class="docutils" />
-<p><a id='iir'></a><div><img alt="img/IMG-iir.jpg" src="img/IMG-iir.jpg" /><h2 style="position: relative; top: 6px; left: 6px">3. IIR-Filterung </h2></div></p>
+<p><a id='iir'></a><div><img alt="_images/IMG-iir.jpg" src="_images/IMG-iir.jpg" /><h2 style="position: relative; top: 6px; left: 6px">3. IIR-Filterung </h2></div></p>
 </section>
 <section id="butterworth-filter">
 <h3>3.1 Butterworth Filter<a class="headerlink" href="#butterworth-filter" title="Permalink to this headline">#</a></h3>
@@ -1239,13 +1194,6 @@ Die Bandbreite soll dabei wieder $bw = 60$ Hz betragen.</p>
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">1.3 -  Anwendungsbeispiel</p>
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="2.1%20-%20Sweep.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">2.1 - Sweep</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>

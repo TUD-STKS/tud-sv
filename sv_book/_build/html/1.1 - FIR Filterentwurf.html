@@ -162,50 +162,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Thema-2-Messung der Übertragungsfunktion
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="2.1%20-%20Sweep.html">
-   2.1 - Sweep
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2.1%20-%20Sweep_solved.html">
-   2.1 - Sweep
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2.2%20-%20LPC.html">
-   2.2 - Linear Predictive Coding
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2.2%20-%20LPC_solved.html">
-   2.2 - Linear Predictive Coding
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Thema-3-Analye nichtstationärer Signale
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="3.1%20-%20STFT.html">
-   3.1 - Short Time Fourier Transformation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="3.1%20-%20STFT_solved.html">
-   3.1 - Short Time Fourier Transformation
-  </a>
- </li>
-</ul>
 
     </div>
 </nav></div>
@@ -466,7 +422,7 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="fir-filterentwurf">
 <h1>1.1 - FIR Filterentwurf<a class="headerlink" href="#fir-filterentwurf" title="Permalink to this headline">#</a></h1>
-<a class="reference internal image-reference" href="img/prism.gif"><img alt="img/prism.gif" src="img/prism.gif" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="_images/prism.gif"><img alt="_images/prism.gif" src="_images/prism.gif" style="width: 400px;" /></a>
 <p>Ein FIR-Filter (Finite Impulse Response) ist ein Filter, dessen Impulsantwort (oder Antwort auf eine Eingabe mit endlicher Länge) von endlicher Dauer ist, da sie sich in endlicher Zeit auf Null einstellt. Dies steht im Gegensatz zu IIR-Filtern (Infinite Impulse Response), die interne Rückkopplungen aufweisen und möglicherweise unbegrenzt weiter reagieren (normalerweise abklingend). Die Entwurfsmethoden umfassen Least MSE, Minimax, Frequenzabtastung usw. (siehe die Vorlesung: Thema1-Filter). Hier diskutieren wir die Frequenzabtastung - und damit den Filterentwurf - mittels inverser Fourier-Transformation, da er gleichzeitig einen grundlegenderen Einblick in die Signaltheorie bietet.</p>
 <section id="inhalt">
 <h2>Inhalt<a class="headerlink" href="#inhalt" title="Permalink to this headline">#</a></h2>
@@ -491,9 +447,9 @@ title="Print to PDF"
   </tr>  
 </table>
 <hr class="docutils" />
-<p><a id='intro'></a><div><img alt="img/IMG-intro.png" src="img/IMG-intro.png" /><h2 style="position: relative; top: 6px; left: 6px">1. Wiederholung </h2></div></p>
+<p><a id='intro'></a><div><img alt="_images/IMG-intro.png" src="_images/IMG-intro.png" /><h2 style="position: relative; top: 6px; left: 6px">1. Wiederholung </h2></div></p>
 <p>Die Zusammenhänge zwischen Fourier-Transformation, Fourier-Reihe, DTFT und DFT, wie sie in der Vorlesung Thema1-Filter zusammgenfasst wurden, sind in der nachfolgenden Grafik noch einmal dargestellt:</p>
-<p><img alt="transformation" src="img/transformation.jpg" /></p>
+<p><img alt="transformation" src="_images/transformation.jpg" /></p>
 <ul class="simple">
 <li><p><strong>Fourier-Reihe:</strong><br />
 Die Fourier-Reihe beschreibt, dass jede periodische Funktion $x(t)$ durch eine unendliche Reihe dargestellt werden kann, die aus Sinusfunktion und Cosinusfunktion besteht (die Sinusfunktion und die Cosinusfunktion werden als Basisfunktionen gewählt, weil sie orthogonal zuneinander sind). Nach der Euler-Formel können diese Funktionen wie nachfolgend auch als Exponentialform geschrieben werden
@@ -509,7 +465,7 @@ Da ein digitaler Computer nur digitale Signale verarbeiten kann, ist es zunächs
 Die <em>diskrete Fourier-Transformation</em> erhält man, indem die DTFT bzw. das daraus resultierende, kontinuierliche Spektrum, an  $N$ festen Frequenzpunkten $f = \frac{n}{N}\cdot f_s$ im Intervall $[0, f_s]$ abgetastet wird. $\Omega = \frac{2\pi f}{f_s}$ wird dadurch zu $\Omega = \frac{2\pi n}{N}$, da sich $f_s$ herauskürzt.</p></li>
 </ul>
 <hr class="docutils" />
-<p><a id='idtft'></a><div><img alt="img/IMG-idtft.png" src="img/IMG-idtft.png" /><h2 style="position: relative; top: 6px; left: 6px">2. Inverse DTFT </h2></div></p>
+<p><a id='idtft'></a><div><img alt="_images/IMG-idtft.png" src="_images/IMG-idtft.png" /><h2 style="position: relative; top: 6px; left: 6px">2. Inverse DTFT </h2></div></p>
 <p>Die inverse DTFT ist eine Möglichkeit, um die Impulsantwort im Zeitbereich aus einem vorgegebenen Frequenzgang $H(\omega)$ im Bild-/Spektralbereich zu berechnen. Der gegebene Amplitudenfrequenzgang ist kontinuierlich, aperiodisch und reell (siehe Übung 2, Aufgabe 1). Unter der Verwendung der inversen DTFT,<br />
 \begin{equation}
 x(k)=\frac{1}{2\pi}\int_{-\pi}^{\pi}H(e^{j\Omega})e^{jk\Omega}d\Omega
@@ -674,7 +630,7 @@ Wie in der Übung soll nachfolgend ein Hochpassfilter über die Methode der inve
 </div>
 </div>
 <hr class="docutils" />
-<p><a id='idft'></a><div><img alt="img/IMG-idft.png" src="img/IMG-idft.png" /><h2 style="position: relative; top: 6px; left: 6px">3. Inverse DFT </h2></div></p>
+<p><a id='idft'></a><div><img alt="_images/IMG-idft.png" src="_images/IMG-idft.png" /><h2 style="position: relative; top: 6px; left: 6px">3. Inverse DFT </h2></div></p>
 <p>Für die IDTFT in Abschnitt 2 musste ein Integral über die (logischerweise kontinuierliche) Variable $\Omega$ ausgewertet werden, was über eine numerische Integration gelöst wurde, aber für Rechner nicht besonders elegant ist. Die IDFT eignet sich für digitale Computer deutlich besser, da sie mit diskreten Abtastwerten arbeitet.</p>
 <p>Im Folgenden soll daher dasselbe Vorgehen mit der IDFT anstatt der IDTFT durchgeführt werden. Die IDFT ist definiert durch
 \begin{equation*}
@@ -883,7 +839,7 @@ Der Ausgabewert (in diesem Falle die Impulsantwort h(k)) folgt nach einem <code 
 <li><p>Titelbild von <a class="reference external" href="https://en.wikipedia.org/wiki/Prism#/media/File:Light_dispersion_conceptual_waves.gif">Lucas Vieira</a></p></li>
 <li><p>DSP Guide: <a class="reference external" href="http://www.dspguide.com/pdfbook.htm">The Scientist and Engineer’s Guide to
 Digital Signal Processing</a></p></li>
-<li><p>http://fourier.eng.hmc.edu/e101/lectures/Fourier_Transform_C/node1.html</p></li>
+<li><p><a class="reference external" href="http://fourier.eng.hmc.edu/e101/lectures/Fourier_Transform_C/node1.html">http://fourier.eng.hmc.edu/e101/lectures/Fourier_Transform_C/node1.html</a></p></li>
 </ol>
 <hr class="docutils" />
 <div>Notebook erstellt von Arne-Lukas Fietkau, Yifei Li  und <a href="mailto:christoph.wagner@tu-dresden.de?Subject=Frage%20zu%20Jupyter%20Notebook%201.1%20FIR%20Filterentwurf" target="_top">Christoph Wagner</a></div></section>
