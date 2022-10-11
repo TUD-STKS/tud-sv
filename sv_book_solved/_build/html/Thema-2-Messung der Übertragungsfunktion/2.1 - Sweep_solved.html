@@ -1,0 +1,1256 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>2.1 - Sweep &#8212; SV-book</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.2 - Linear Predictive Coding" href="2.2%20-%20LPC_solved.html" />
+    <link rel="prev" title="1.3 - Anwendungsbeispiel" href="../Thema-1-Filter/1.3%20-%20Anwendungsbeispiel_solved.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">SV-book</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../Einf%C3%BChrung%20in%20Python/0.1%20-%20Installationsanleitung.html">
+                    0.1 - Installationsanleitung
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Einführung in Python
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Einf%C3%BChrung%20in%20Python/0.2%20-%20Einf%C3%BChrung_solved.html">
+   0.2 - Einführung
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Thema-1-Filter
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Thema-1-Filter/1.1%20-%20FIR%20Filterentwurf_solved.html">
+   1.1 - FIR Filterentwurf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Thema-1-Filter/1.2%20-%20IIR%20Filterentwurf_solved.html">
+   1.2 - IIR-Filterentwurf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Thema-1-Filter/1.3%20-%20Anwendungsbeispiel_solved.html">
+   1.3 -  Anwendungsbeispiel
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Thema-2-Messung der Übertragungsfunktion
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2.1 - Sweep
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2.2%20-%20LPC_solved.html">
+   2.2 - Linear Predictive Coding
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Thema-3-Analyse nichtstationärer Signale
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Thema-3-Analyse%20nichtstation%C3%A4rer%20Signale/3.1%20-%20STFT_solved.html">
+   3.1 - Short Time Fourier Transformation
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/Berni96/tud-sv/main?urlpath=tree/sv_book/Thema-2-Messung der Übertragungsfunktion/2.1 - Sweep_solved.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/Berni96/tud-sv"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/Berni96/tud-sv/issues/new?title=Issue%20on%20page%20%2FThema-2-Messung der Übertragungsfunktion/2.1 - Sweep_solved.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/Thema-2-Messung der Übertragungsfunktion/2.1 - Sweep_solved.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inhalt">
+   Inhalt
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#references">
+     References
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>2.1 - Sweep</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inhalt">
+   Inhalt
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#references">
+     References
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="sweep">
+<h1>2.1 - Sweep<a class="headerlink" href="#sweep" title="Permalink to this headline">#</a></h1>
+<a class="reference internal image-reference" href="../_images/1-title.gif"><img alt="../_images/1-title.gif" src="../_images/1-title.gif" style="width: 600px;" /></a>
+<p>Sweeps sind eine beliebte Methode zur Messung der Übertragungsfunktion eines linearen Systems, da sie eine Reihe von positiven Eigenschaften aufweisen wie bspw. einen (einstellbaren) glatten Amplitudenfrequenzgang.</p>
+<p>Das Thema der Sweeps wird in der Vorlesung in Thema 3: “Messung der Übertragungsfunktion und Impulsantworten” behandelt und das hier präsentierte Beispiel wird in der 6. Übungseinheit per Hand berechnet.</p>
+<section id="inhalt">
+<h2>Inhalt<a class="headerlink" href="#inhalt" title="Permalink to this headline">#</a></h2>
+<table style="width:330px; border: 1px solid black; display: inline-block">
+    <tr>
+        <td style="text-align:right" width=64px><img src="img/TITLE-linear.png" style="float:left"></td>
+        <td style="text-align:left" width=300px>
+            <a style="color:black; font-size:14px; font-weight:bold; text-decoration:none" href='#1'>
+                1. Sweep mit konstanter Hüllkurve
+            </a>
+        </td>
+    </tr>  
+    <tr>
+        <td style="text-align:right"><img src="img/TITLE-triang.png" style="float:left"></td>
+        <td style="text-align:left" width=128px>
+            <a style="color:black; font-size:14px; font-weight:bold; text-decoration:none" href='#2'>
+                2. Sweep mit Dreieck-Hüllkurve
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align:right"><img src="img/TITLE-Python.png" style="float:left"></td>
+        <td style="text-align:left" width=128px>
+            <a style="color:black; font-size:14px; font-weight:bold; text-decoration:none" href='#3'>
+                3. Realisierung mit Python-Modulen
+            </a>
+        </td>
+    </tr>
+</table>
+<hr class="docutils" />
+<p><a id='1'></a><div><img alt="../_images/TITLE-linear.png" src="../_images/TITLE-linear.png" /><h2 style="position: relative; top: 6px; left: 6px">1. Sweep mit konstanter Hüllkurve</h2></div></p>
+<p>Ein Sweep $x(t)$ im Zeitbereich ist eine harmonische Schwingung mit zeitabhängigem Phasenargument $\varphi (t)$, dessen Momentanfrequenz $\omega (t)$ mit der Zeit monoton zu- oder abnimmt (weswegen er auch Gleitsinus genannt wird, in Abgrenzung zu Sinusschwingungen mit einer konstanten Phase) :
+\begin{equation*}
+x(t)=x_{0} \cdot \sin (\varphi (t)); ; mit ; ; \omega (t)=\frac{\mathrm{d} \varphi (t)}{\mathrm{d} t}; ;
+\rightarrow ; ;  x(t)=x_{0} \cdot \sin \left( \int \omega (t)dt + \varphi_{0} \right)
+\end{equation*}<br />
+In der Umgebung eines Zeitpunkts $t_{0}$ mit der <em>Momentanfrequenz</em> $\omega _{0}$ nähert sich $x(t)$ einer Sinusfunktion mit der Frequenz $\omega _{0}$ an.</p>
+<p>Zur Erzeugung eines Sweeps mit linearer Hüllkurve und linearer Frequenzänderung erhält man folgende Formel:</p>
+<p>\begin{equation*}
+x(t)=x_{0} \cdot \sin \left( \omega_{start} \cdot t + \frac{\omega_{end} - \omega_{start}}{2 \cdot T_s} \cdot t^2 \right)
+\end{equation*}</p>
+<hr class="docutils" />
+<p>Neben den schon bekannten Modulen <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">scipy</span></code> und <code class="docutils literal notranslate"><span class="pre">simpleaudio</span></code>, wird in diesem Notebook das Modul <a class="reference external" href="https://ipywidgets.readthedocs.io/en/stable/"><code class="docutils literal notranslate"><span class="pre">ipywidgets</span></code></a> eingeführt. Damit lassen sich Benutzeroberflächen (user interface / UI) einfügen, wie zum Beispiel Schieberegler, mit denen sich Variablenwerte einstellen lassen. Dieses Modul müssen sie wahrscheinlich noch über <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> installieren. Wenn Sie das getan haben, können Sie nun alle für dieses Modul benötigten Module importieren:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Import externer Module</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Lösung</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">simpleaudio</span> <span class="k">as</span> <span class="nn">sa</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">fftpack</span><span class="p">,</span> <span class="n">signal</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact_manual</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Die Variablen für die Berechnung des linearen Sweeps sind:</p>
+<ul class="simple">
+<li><p><em>fs_Hz</em>: Abtastfrequenz (für diese Aufgabe relativ beliebig),</p></li>
+<li><p><em>A</em>: Amplitude des Sweeps (für diese Aufgabe relativ beliebig),</p></li>
+<li><p><em>fStart_Hz</em>: Startfrequenz des Sweeps,</p></li>
+<li><p><em>fEnd_Hz</em>: Endfrequenz des Sweeps,</p></li>
+<li><p><em>T_s</em>: Dauer des Sweep.</p></li>
+</ul>
+<p>Erstellen Sie zunächst eine Funktion “sweep_linear”, die über die Eingabevariablen [<code class="docutils literal notranslate"><span class="pre">fs_Hz</span></code>, <code class="docutils literal notranslate"><span class="pre">fStart_lin_Hz</span></code>, <code class="docutils literal notranslate"><span class="pre">fEnd_lin_Hz</span></code>, <code class="docutils literal notranslate"><span class="pre">T_s</span></code> und <code class="docutils literal notranslate"><span class="pre">A</span></code>] die zwei Ausgabevariablen [<code class="docutils literal notranslate"><span class="pre">t_s</span></code> (Array mit Abtastzeitpunkten) und <code class="docutils literal notranslate"><span class="pre">sweep</span></code> (Array mit Werten des linearen Sweeps an den Zeitpunkten von <code class="docutils literal notranslate"><span class="pre">t_s</span></code>)] erzeugt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Definition der Funktion sweep_linear</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Lösung</span>
+<span class="k">def</span> <span class="nf">sweep_linear</span><span class="p">(</span><span class="n">fs_Hz</span><span class="p">,</span> <span class="n">fStart_lin_Hz</span><span class="p">,</span> <span class="n">fEnd_lin_Hz</span><span class="p">,</span> <span class="n">T_s</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
+    <span class="n">t_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T_s</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">fs_Hz</span><span class="o">*</span><span class="n">T_s</span><span class="p">))</span>
+    <span class="n">wstart_rad_per_s</span> <span class="o">=</span> <span class="n">fStart_lin_Hz</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+    <span class="n">wend_rad_per_s</span> <span class="o">=</span> <span class="n">fEnd_lin_Hz</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+    <span class="n">sweep</span> <span class="o">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">wstart_rad_per_s</span> <span class="o">*</span> <span class="n">t_s</span> <span class="o">+</span> <span class="p">(</span><span class="n">wend_rad_per_s</span><span class="o">-</span><span class="n">wstart_rad_per_s</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">t_s</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">T_s</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">t_s</span><span class="p">,</span> <span class="n">sweep</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nun initialisieren Sie die Variablen für die Berechnung des Sweeps. Die Werte der Variablen sollen dabei wie folgt sein:</p>
+<ul class="simple">
+<li><p><em>fs_Hz</em>: 16 kHz,</p></li>
+<li><p><em>A</em>: 1,</p></li>
+<li><p><em>fStart_Hz</em>: 50 Hz,</p></li>
+<li><p><em>fEnd_Hz</em>: 400 Hz,</p></li>
+<li><p><em>T_s</em>: 4 s.</p></li>
+</ul>
+<p>Führen Sie mit diesen Variablen die Funktion “sweep_linear” aus und lassen Sie sich diese graphisch darstellen:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Variableninitialisierung und Erzeugen der Zeitfunktion des Sweeps</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Lösung</span>
+<span class="c1"># Initialisierung der Variablen</span>
+<span class="n">fs_Hz</span> <span class="o">=</span> <span class="mf">16e3</span>
+<span class="n">amplitude</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">fStart_Hz</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">fEnd_Hz</span> <span class="o">=</span> <span class="mi">400</span>
+<span class="n">T_s</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="c1"># Zeitbereich</span>
+<span class="n">time_s</span><span class="p">,</span> <span class="n">sweep_lin</span> <span class="o">=</span> <span class="n">sweep_linear</span><span class="p">(</span><span class="n">fs_Hz</span><span class="p">,</span> <span class="n">fStart_Hz</span><span class="p">,</span> <span class="n">fEnd_Hz</span><span class="p">,</span> <span class="n">T_s</span><span class="p">,</span> <span class="n">amplitude</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Graphische Darstellung des Sweeps</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sweep von </span><span class="si">%d</span><span class="s1"> Hz bis </span><span class="si">%d</span><span class="s1"> Hz&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">fStart_Hz</span><span class="p">,</span> <span class="n">fEnd_Hz</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Zeit [s]&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;x(t)&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_s</span><span class="p">,</span> <span class="n">sweep_lin</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2.1 - Sweep_solved_8_0.png" src="../_images/2.1 - Sweep_solved_8_0.png" />
+</div>
+</div>
+<p>Nun können Sie sich den erzeugten Sweep auch anhören! Erstellen Sie dafür eine Funktion “play_audio”, die mittels <code class="docutils literal notranslate"><span class="pre">simpleaudio</span></code> Arrays ausgibt (wie in Kapitel 1.3 eingeführt). Nutzen Sie dann die neu definierte Funktion, um sich den Sweep auszugeben. <br>(Achtung: Das Signal ist sehr laut!)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Definition der Funktion play_audio</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Lösung</span>
+<span class="k">def</span> <span class="nf">play_audio</span><span class="p">(</span><span class="n">sweep_signal</span><span class="p">):</span>
+    <span class="n">sound</span> <span class="o">=</span> <span class="p">(</span><span class="n">sweep_signal</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">15</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">sweep_signal</span><span class="p">)))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">)</span>
+    <span class="n">play_obj</span> <span class="o">=</span> <span class="n">sa</span><span class="o">.</span><span class="n">play_buffer</span><span class="p">(</span><span class="n">sound</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">fs_Hz</span><span class="p">))</span>
+    <span class="n">play_obj</span><span class="o">.</span><span class="n">wait_done</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Audioausgabe</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1">#Lösung</span>
+<span class="n">play_audio</span><span class="p">(</span><span class="n">sweep_lin</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Es ist zudem sehr interessant, wie das Signal im Frequenzbereich aussieht. Wenden Sie deswegen die in der folgenden Funktion “fft_sweep” definiert Fast-Fourier-Transformation auf den Sweep an:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Definition der Funktion fft_sweep</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">fft_sweep</span><span class="p">(</span><span class="n">sweep</span><span class="p">,</span> <span class="n">fs_Hz</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">sweep</span><span class="o">.</span><span class="n">size</span> <span class="c1"># Länge von FFT</span>
+    <span class="n">f_Hz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">fs_Hz</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># Frequenzbereich</span>
+    <span class="n">sweep_fft</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">sweep</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="n">sweep_fft_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">sweep_fft</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">f_Hz</span><span class="p">)])</span> <span class="o">/</span> <span class="nb">int</span><span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">f_Hz</span><span class="p">,</span> <span class="n">sweep_fft_plot</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Erzeugen des Frequenzgangs des Sweeps</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Lösung</span>
+<span class="c1"># Anwendung der FFT</span>
+<span class="n">f_Hz</span><span class="p">,</span> <span class="n">sweep_fft_plot</span> <span class="o">=</span> <span class="n">fft_sweep</span><span class="p">(</span><span class="n">sweep_lin</span><span class="p">,</span> <span class="n">fs_Hz</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Graphische Darstellung</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Amplitudenfrequenzgang&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frequenz [Hz]&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;|X(f)|&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_Hz</span><span class="p">,</span> <span class="n">sweep_fft_plot</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="n">fStart_Hz</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">fEnd_Hz</span><span class="o">*</span><span class="mf">1.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">sweep_fft_plot</span><span class="p">)</span><span class="o">*</span><span class="mf">1.1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2.1 - Sweep_solved_15_0.png" src="../_images/2.1 - Sweep_solved_15_0.png" />
+</div>
+</div>
+<p>Der Frequenzgang zeigt an den Rändern des Frequenzbands eine starke Welligkeit auf. Um diese zu entfernen, kann die Frequenz mittels Ein- und Ausblenden geglättet werden. Dies soll hier mit einem Tukey-Fenster aus dem Objekt <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.get_window.html"><code class="docutils literal notranslate"><span class="pre">signal.get_window()</span></code></a> umgesetzt werden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Erzeugen des Tukey-Fensters</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Lösung</span>
+<span class="n">window</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">get_window</span><span class="p">((</span><span class="s1">&#39;tukey&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">sweep_lin</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Tukey-Fenster&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Zeit [s]&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;window(t)&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_s</span><span class="p">,</span> <span class="n">window</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2.1 - Sweep_solved_18_0.png" src="../_images/2.1 - Sweep_solved_18_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Fensterung des Sweep-Signals</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Lösung</span>
+<span class="c1"># Zeitbereich</span>
+<span class="n">sweep_win</span> <span class="o">=</span> <span class="n">sweep_lin</span> <span class="o">*</span> <span class="n">window</span>
+
+<span class="c1"># Frequenzbereich</span>
+<span class="n">f_Hz</span><span class="p">,</span> <span class="n">sweep_win_fft_plot</span> <span class="o">=</span> <span class="n">fft_sweep</span><span class="p">(</span><span class="n">sweep_win</span><span class="p">,</span> <span class="n">fs_Hz</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Graphische Darstellung</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sweep von </span><span class="si">%d</span><span class="s1"> Hz bis </span><span class="si">%d</span><span class="s1"> Hz&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">fStart_Hz</span><span class="p">,</span> <span class="n">fEnd_Hz</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Zeit [s]&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;x(t)&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_s</span><span class="p">,</span> <span class="n">sweep_win</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Amplitudenfrequenzgang&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frequenz [Hz]&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;|X(f)|&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_Hz</span><span class="p">,</span> <span class="n">sweep_win_fft_plot</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="n">fStart_Hz</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">fEnd_Hz</span><span class="o">*</span><span class="mf">1.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">sweep_fft_plot</span><span class="p">)</span><span class="o">*</span><span class="mf">1.1</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2.1 - Sweep_solved_20_0.png" src="../_images/2.1 - Sweep_solved_20_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Audioausgabe</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Lösung</span>
+<span class="n">play_audio</span><span class="p">(</span><span class="n">sweep_win</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Durch die Fensterung sollte die Welligkeit im Frequenzbereich verringert worden sein. Nur verringert sich dadurch auch die Amplitude der äußeren Frequenzen.</p>
+<hr class="docutils" />
+<p>Um sich die Veränderungen von Fenstern oder Frequenzen interaktiv anschauen zu können, wird nun das Modul <a class="reference external" href="https://ipywidgets.readthedocs.io/en/stable/index.html"><code class="docutils literal notranslate"><span class="pre">ipywidgets</span></code></a> genutzt. Durch dieses können Variablen verändert werden und mittels Drop-Down-Menüs oder Häckchen-Kästen die Ausgabe verändert werden. Probieren Sie es einfach aus. Sie müssen dafür noch in dem folgenden Code Ihre definierten Funktionen einfügen:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Initialisierung fester Variablen</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">fs_Hz</span> <span class="o">=</span> <span class="mf">16e3</span>
+<span class="n">amplitude</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Interaktive Sweepdarstellung</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Lösung</span>
+<span class="nd">@interact_manual</span><span class="p">(</span><span class="n">T_s_i</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="n">fStart_Hz_i</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">fEnd_Hz_i</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">windowing_i</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">window_type_i</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;tukey&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;triang&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)],</span> <span class="n">win_alpha_i</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">),</span> <span class="n">output_sound_i</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">interactive_linear_sweep</span><span class="p">(</span><span class="n">T_s_i</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fStart_Hz_i</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">fEnd_Hz_i</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">windowing_i</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">window_type_i</span><span class="o">=</span><span class="s1">&#39;tukey&#39;</span><span class="p">,</span> <span class="n">win_alpha_i</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">output_sound_i</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="c1"># Erzeugung des Sweeps</span>
+    <span class="n">time_s</span><span class="p">,</span> <span class="n">sweep</span> <span class="o">=</span> <span class="n">sweep_linear</span><span class="p">(</span><span class="n">fs_Hz</span><span class="p">,</span> <span class="n">fStart_Hz_i</span><span class="p">,</span> <span class="n">fEnd_Hz_i</span><span class="p">,</span> <span class="n">T_s_i</span><span class="p">,</span> <span class="n">amplitude</span><span class="p">)</span>
+
+    <span class="c1"># Optionales Fenstern des Sweeps</span>
+    <span class="k">if</span> <span class="n">windowing_i</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">window_type_i</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">window</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">get_window</span><span class="p">((</span><span class="s1">&#39;tukey&#39;</span><span class="p">,</span> <span class="n">win_alpha_i</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">sweep</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">window_type_i</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">window</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">get_window</span><span class="p">(</span><span class="s1">&#39;triang&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sweep</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">window</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">get_window</span><span class="p">(</span><span class="s1">&#39;boxcar&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sweep</span><span class="p">))</span>
+        <span class="n">sweep</span> <span class="o">=</span> <span class="n">sweep</span> <span class="o">*</span> <span class="n">window</span>
+    
+    <span class="c1"># Graphische Darstellung des Zeitbereichs</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sweep von </span><span class="si">%d</span><span class="s1"> Hz zu </span><span class="si">%d</span><span class="s1"> Hz&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">fStart_Hz_i</span><span class="p">,</span> <span class="n">fEnd_Hz_i</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Zeit [s]&#39;</span><span class="p">)</span> 
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;x(t)&#39;</span><span class="p">)</span> 
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_s</span><span class="p">,</span> <span class="n">sweep</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+    <span class="c1"># FFT des Sweeps</span>
+    <span class="n">f_Hz</span><span class="p">,</span> <span class="n">sweep_fft_plot</span> <span class="o">=</span> <span class="n">fft_sweep</span><span class="p">(</span><span class="n">sweep</span><span class="p">,</span> <span class="n">fs_Hz</span><span class="p">)</span>
+
+    <span class="c1"># Graphische Darstellung des Frequenzbereichs</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Amplitudenfrequenzgang&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frequenz [Hz]&#39;</span><span class="p">)</span> 
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;|X(f)|&#39;</span><span class="p">)</span> 
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_Hz</span><span class="p">,</span> <span class="n">sweep_fft_plot</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">fStart_Hz_i</span> <span class="o">&lt;=</span> <span class="n">fEnd_Hz_i</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="n">fStart_Hz_i</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">fEnd_Hz_i</span><span class="o">*</span><span class="mf">1.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">sweep_fft_plot</span><span class="p">)</span><span class="o">*</span><span class="mf">1.1</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="n">fEnd_Hz_i</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">fStart_Hz_i</span><span class="o">*</span><span class="mf">1.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">sweep_fft_plot</span><span class="p">)</span><span class="o">*</span><span class="mf">1.1</span><span class="p">])</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+    
+    <span class="c1"># Optionale Audioausgabe</span>
+    <span class="k">if</span> <span class="n">output_sound_i</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">play_audio</span><span class="p">(</span><span class="n">sweep</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "fb4ea9b1ee6c487fa153291da5884d80"}
+</script></div>
+</div>
+<p><a id='2'></a><div><img alt="../_images/TITLE-triang.png" src="../_images/TITLE-triang.png" /><h2 style="position: relative; top: 6px; left: 6px">2. Sweep mit Dreieck-Hüllkurve</h2></div></p>
+<p>Im Nachfolgenden soll der in Übung 6.1 händisch berechnete Sweep implementiert und visualisiert werden. Dabei soll der Sweep im Frequenzbereich eine konstante Amplitude in seinem Band erhalten. Um das Frequenzverhalten eines linearen Sweeps zu betrachten, welches mit einem Dreieck gefenstert wurde, kann in der vorherigen Zelle betrachtet werden, wenn man das Fenster ‘triang’ wählt.</p>
+<hr class="docutils" />
+<p>Zunächst werden die Grundparameter definiert. Die Start- und Endfrequenz $f_{start} = 200 \ Hz$ und $f_{end} = 1000 \ Hz$ bzw. $\omega_{start}$ und $\omega_{end}$ sowie die notwendige Abtastfrequenz $f_s = 16 \ kHz$ festgelegt:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Grundparameter definieren:</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Lösung</span>
+<span class="n">fs_Hz</span> <span class="o">=</span> <span class="mf">16e3</span>     <span class="c1"># Abtastfrequenz (für diese Aufgabe relativ beliebig)</span>
+<span class="n">dt_s</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">fs_Hz</span>   <span class="c1"># Zeitintervall</span>
+<span class="n">fStart_Hz</span> <span class="o">=</span> <span class="mi">200</span>  <span class="c1"># Startfrequenz [Hz]</span>
+<span class="n">fEnd_Hz</span> <span class="o">=</span> <span class="mi">1000</span>   <span class="c1"># Endfrequenz [Hz]</span>
+<span class="n">wStart_rad_per_s</span> <span class="o">=</span> <span class="n">fStart_Hz</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>  <span class="c1"># Startfrequenz [rad/s]</span>
+<span class="n">wEnd_rad_per_s</span> <span class="o">=</span> <span class="n">fEnd_Hz</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>  <span class="c1"># Endfrequenz [rad/s]</span>
+<span class="n">wm_rad_per_s</span> <span class="o">=</span> <span class="p">(</span><span class="n">wStart_rad_per_s</span> <span class="o">+</span> <span class="n">wEnd_rad_per_s</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>  <span class="c1"># Mittenfrequenz [rad/s]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Anschließend werden die Funktionen für die Phasenwinkel $\varphi_1(t)$ und $\varphi_2(t)$ definiert. Nutzen Sie dafür die berechneten Formeln aus 6.1 c):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Definition der Funktion calculatePhi1</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Lösung</span>
+<span class="k">def</span> <span class="nf">calculatePhi1</span><span class="p">(</span><span class="n">t_s</span><span class="p">,</span> <span class="n">wStart_rad_per_s</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">T_s</span><span class="p">):</span>
+    <span class="n">phi</span> <span class="o">=</span> <span class="n">k</span><span class="o">*</span><span class="n">t_s</span><span class="o">**</span><span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">T_s</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">wStart_rad_per_s</span><span class="o">*</span><span class="n">t_s</span>
+    <span class="k">return</span> <span class="n">phi</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Definition der Funktion calculatePhi2</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Lösung</span>
+<span class="k">def</span> <span class="nf">calculatePhi2</span><span class="p">(</span><span class="n">t_s</span><span class="p">,</span> <span class="n">wStart_rad_per_s</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">T_s</span><span class="p">):</span>
+    <span class="n">phi</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">t_s</span><span class="o">**</span><span class="mi">4</span> <span class="o">/</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">T_s</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">k</span> <span class="o">/</span> <span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">T_s</span><span class="p">)</span> <span class="o">*</span> <span class="n">t_s</span><span class="o">**</span><span class="mi">3</span> \
+    <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">k</span> <span class="o">*</span> <span class="n">t_s</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">k</span><span class="o">*</span><span class="n">T_s</span><span class="o">*</span><span class="n">t_s</span> <span class="o">+</span> <span class="n">wStart_rad_per_s</span><span class="o">*</span><span class="n">t_s</span> \
+    <span class="o">+</span> <span class="mi">7</span><span class="o">*</span><span class="n">k</span><span class="o">/</span><span class="mi">48</span> <span class="o">*</span> <span class="n">T_s</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">wStart_rad_per_s</span><span class="o">*</span><span class="n">T_s</span><span class="o">/</span><span class="mi">2</span>
+    <span class="k">return</span> <span class="n">phi</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Durch die Diskontinuität in der Einhüllenden ($a(t)$) müssen in diesem Spezialfall zusätzliche Bedingungen erfüllt werden, damit die Phase an der Übergangssstelle kontinuierlich verläuft. Zum einen muss der Sweep-Phasenwinkel $\varphi(t)$ an der Stelle $T/2$ gleich sein:
+\begin{equation}
+\sin\left(\varphi_1\left(\frac{T}{2}\right)\right) = \sin\left(\varphi_2\left(\frac{T}{2}\right)\right)
+\end{equation}</p>
+<p>Substituiert man hier die berechneten Gleichungen aus der Übung für $\varphi_1(T/2)$ und $\varphi_2(T/2)$ ergibt sich die erste Bedingung
+\begin{equation}
+\sin\left(\frac{T\cdot(7\omega_1 + \omega_2)}{16}\right) = \sin\left(0\right) = 0.
+\end{equation}</p>
+<p>Zum anderen muss auch die Ableitung des Sweep-Phasenwinkels, $\frac{\mathrm{d}\varphi(t)}{\mathrm{d}t}$ gleich sein, d.h. aus der ersten Bedingung folgt (innere Ableitung nicht vergessen):</p>
+<p>\begin{align}
+&amp;\cos\left(\frac{T\cdot(7\omega_1 + \omega_2)}{16}\right)\cdot \left(\frac{\omega_1 + \omega_2}{2}\right) = \cos\left(0\right)\cdot \left(\frac{\omega_1 + \omega_2}{2}\right) = 1 \
+&amp;\Leftrightarrow \cos\left(\frac{T\cdot(7\omega_1 + \omega_2)}{16}\right) = 1.
+\end{align}</p>
+<p>Beide Gleichungen sind erfüllt, wenn das Argument ein Vielfaches von $2\pi$ ist. Damit kann die Sweepdauer $T$ explizit durch</p>
+<p>\begin{equation}
+\frac{T}{16}\left(\omega_1 + \omega_2\right) = 2\pi\cdot n,\qquad n=0,1,2,3,\dots
+\end{equation}</p>
+<p>berechnet werden und ist durch $n\in \mathbb{N}$ nicht komplett frei wählbar.
+Dieser Zusammenhang für die Periode $T$ soll nun in der nachfolgenden Funktion definiert:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Definition der Funktion calculatePhi2</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Lösung</span>
+<span class="k">def</span> <span class="nf">calculatePeriod</span><span class="p">(</span><span class="n">wStart_rad_per_s</span><span class="p">,</span> <span class="n">wEnd_rad_per_s</span><span class="p">,</span> <span class="n">n_periods</span><span class="p">):</span>
+    <span class="n">T_s</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">n_periods</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">16</span> <span class="o">/</span> <span class="p">(</span><span class="mi">7</span><span class="o">*</span><span class="n">wStart_rad_per_s</span> <span class="o">+</span> <span class="n">wEnd_rad_per_s</span><span class="p">)</span>  
+    <span class="k">return</span> <span class="n">T_s</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Zudem muss der Faktor k aus 6.1.b) berechnet werden. Dafür wird nun auch eine Funktion definiert:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Definition der Funktion calculatek</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Lösung</span>
+<span class="k">def</span> <span class="nf">calculatek</span><span class="p">(</span><span class="n">wStart_rad_per_s</span><span class="p">,</span> <span class="n">wEnd_rad_per_s</span><span class="p">,</span> <span class="n">T_s</span><span class="p">):</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="mi">3</span><span class="o">/</span><span class="n">T_s</span> <span class="o">*</span> <span class="p">(</span><span class="n">wEnd_rad_per_s</span> <span class="o">-</span> <span class="n">wStart_rad_per_s</span><span class="p">)</span>  
+    <span class="k">return</span> <span class="n">k</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Zu guter Letzt werden noch die beiden Funktionen für die Berechnung der Amplitudenmodulaton $a(t)$ für beide Hälften definiert. Nutzen Sie dafür die Formeln aus 6.1 a):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Definition der Amplituden-Funktionen</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Lösung</span>
+<span class="k">def</span> <span class="nf">calculateAmplitude1</span><span class="p">(</span><span class="n">t_s</span><span class="p">,</span> <span class="n">T_s</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="n">T_s</span><span class="o">*</span><span class="n">t_s</span>
+    <span class="k">return</span> <span class="n">a</span>
+
+<span class="k">def</span> <span class="nf">calculateAmplitude2</span><span class="p">(</span><span class="n">t_s</span><span class="p">,</span> <span class="n">T_s</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">/</span><span class="n">T_s</span><span class="o">*</span><span class="p">(</span><span class="n">t_s</span><span class="o">-</span><span class="n">T_s</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">a</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nun berechnen wir zuerst die Sweepdauer, indem wir die Funktion “calculatePeriod” verwenden und dafür die Variable n_periods auf 300 festsetzen (der Wert ist hier egal). Daraus lässt sich zudem die Konstante k aus 6.1. b) bestimmen:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Berechnung von T_s und k</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Lösung</span>
+<span class="n">n_periods</span> <span class="o">=</span> <span class="mi">300</span><span class="p">;</span>
+<span class="c1"># Sweepdauer T berechnen in Abhängigkeit von ganzen Perioden 2*pi*n:</span>
+<span class="n">T_s</span> <span class="o">=</span> <span class="n">calculatePeriod</span><span class="p">(</span><span class="n">wStart_rad_per_s</span><span class="p">,</span> <span class="n">wEnd_rad_per_s</span><span class="p">,</span> <span class="n">n_periods</span><span class="p">)</span>  <span class="c1"># die Dauer des Sweeps</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sweepdauer: </span><span class="si">{}</span><span class="s2"> Sekunden.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">T_s</span><span class="p">))</span>
+
+<span class="c1"># Konstante k:</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">calculatek</span><span class="p">(</span><span class="n">wStart_rad_per_s</span><span class="p">,</span> <span class="n">wEnd_rad_per_s</span><span class="p">,</span> <span class="n">T_s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sweepdauer: 2.0 Sekunden.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Jetzt können wir den Sweep damit berechnen und plotten:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Implementierung des Sweeps nach Übung 6.1</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Lösung</span>
+<span class="c1"># Laufvariable t definieren:</span>
+<span class="n">t1_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T_s</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">fs_Hz</span><span class="o">*</span><span class="n">T_s</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">t2_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">T_s</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">dt_s</span><span class="p">,</span> <span class="n">T_s</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">fs_Hz</span><span class="o">*</span><span class="n">T_s</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># Phasenwinkel für beide Abschnitte:</span>
+<span class="n">phi1_rad</span> <span class="o">=</span> <span class="n">calculatePhi1</span><span class="p">(</span><span class="n">t1_s</span><span class="p">,</span> <span class="n">wStart_rad_per_s</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">T_s</span><span class="p">)</span>
+<span class="n">phi2_rad</span> <span class="o">=</span> <span class="n">calculatePhi2</span><span class="p">(</span><span class="n">t2_s</span><span class="p">,</span> <span class="n">wStart_rad_per_s</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">T_s</span><span class="p">)</span>
+
+<span class="c1"># Einhüllende für beide Abschnitte:</span>
+<span class="n">a1</span> <span class="o">=</span> <span class="n">calculateAmplitude1</span><span class="p">(</span><span class="n">t1_s</span><span class="p">,</span> <span class="n">T_s</span><span class="p">)</span>
+<span class="n">a2</span> <span class="o">=</span> <span class="n">calculateAmplitude2</span><span class="p">(</span><span class="n">t2_s</span><span class="p">,</span> <span class="n">T_s</span><span class="p">)</span>
+
+<span class="c1"># Vollständigen Sweep zusammensetzen:</span>
+<span class="n">sweep1</span> <span class="o">=</span> <span class="n">a1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi1_rad</span><span class="p">)</span>
+<span class="n">sweep2</span> <span class="o">=</span> <span class="n">a2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi2_rad</span><span class="p">)</span>
+<span class="n">t_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t1_s</span><span class="p">,</span> <span class="n">t2_s</span><span class="p">)</span>        
+<span class="n">sweep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sweep1</span><span class="p">,</span> <span class="n">sweep2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sweep von </span><span class="si">%d</span><span class="s1"> Hz bis </span><span class="si">%d</span><span class="s1"> Hz&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">fStart_Hz</span><span class="p">,</span> <span class="n">fEnd_Hz</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Zeit [s]&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;x(t)&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_s</span><span class="p">,</span> <span class="n">sweep</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2.1 - Sweep_solved_40_0.png" src="../_images/2.1 - Sweep_solved_40_0.png" />
+</div>
+</div>
+<p>Um sicherzustellen, dass der Sweep tatsächlich das (annähernd) glatte Spektrum über den definierten Frequenzbereich von $f_{start}$ bis $f_{end}$ besitzt, wird der Amplitudenfrequenzgang $|X(k)|$ über die FFT berechnet. Dazu kann die im ersten Teil definierte Funktion “fft_sweep” verwendet werden:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Aufgabe: Spektrum des Sweeps berechnen</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Lösung</span>
+<span class="n">f_Hz</span><span class="p">,</span> <span class="n">sweep_fft_plot</span> <span class="o">=</span> <span class="n">fft_sweep</span><span class="p">(</span><span class="n">sweep</span><span class="p">,</span> <span class="n">fs_Hz</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Amplitudenfrequenzgang&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frequenz [Hz]&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;|X(f)|&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_Hz</span><span class="p">,</span> <span class="n">sweep_fft_plot</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="n">fStart_Hz</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">fEnd_Hz</span><span class="o">*</span><span class="mf">1.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">sweep_fft_plot</span><span class="p">)</span><span class="o">*</span><span class="mf">1.1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2.1 - Sweep_solved_43_0.png" src="../_images/2.1 - Sweep_solved_43_0.png" />
+</div>
+</div>
+<p>Abspielen des Sweepssignal $x(t)$ ergibt das charakteristische Sweepgeräusch. Hierzu können Sie auch die aus dem ersten Part definierte Funktion “playaudio()” verwenden:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Aufgabe: Sweep abspielen</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Lösung</span>
+<span class="n">play_audio</span><span class="p">(</span><span class="n">sweep</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p>Zum Schluss wollen wir uns das Ergebnis noch einmal als interaktives Modul anschauen. Dazu wird wieder die Funktion <code class="docutils literal notranslate"><span class="pre">interact</span></code> aus dem Modul <code class="docutils literal notranslate"><span class="pre">ipywidgets</span></code> verwendet:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Initialisierung fester Variablen</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">fs_Hz</span> <span class="o">=</span> <span class="mf">16e3</span>
+<span class="n">dt_s</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">fs_Hz</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Interaktive Sweepdarstellung</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Lösung</span>
+<span class="nd">@interact_manual</span><span class="p">(</span><span class="n">n_periods_i</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">fStart_Hz_i</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">fEnd_Hz_i</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">output_sound_i</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">interactive_rect_sweep</span><span class="p">(</span><span class="n">n_periods_i</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">fStart_Hz_i</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">fEnd_Hz_i</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">output_sound_i</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    
+    
+    <span class="c1"># Berechnung der Koeffizienten</span>
+    <span class="n">wStart_rad_per_s_i</span> <span class="o">=</span> <span class="n">fStart_Hz_i</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>  <span class="c1"># Startfrequenz [rad/s]</span>
+    <span class="n">wEnd_rad_per_s_i</span> <span class="o">=</span> <span class="n">fEnd_Hz_i</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>  <span class="c1"># Endfrequenz [rad/s]</span>
+    <span class="n">T_s_i</span> <span class="o">=</span> <span class="n">calculatePeriod</span><span class="p">(</span><span class="n">wStart_rad_per_s_i</span><span class="p">,</span> <span class="n">wEnd_rad_per_s_i</span><span class="p">,</span> <span class="n">n_periods_i</span><span class="p">)</span>
+    <span class="n">k_i</span> <span class="o">=</span> <span class="n">calculatek</span><span class="p">(</span><span class="n">wStart_rad_per_s_i</span><span class="p">,</span> <span class="n">wEnd_rad_per_s_i</span><span class="p">,</span> <span class="n">T_s_i</span><span class="p">)</span>
+
+    <span class="c1"># Laufvariable t definieren:</span>
+    <span class="n">t1_s_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T_s_i</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">fs_Hz</span><span class="o">*</span><span class="n">T_s_i</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">t2_s_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">T_s_i</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">dt_s</span><span class="p">,</span> <span class="n">T_s_i</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">fs_Hz</span><span class="o">*</span><span class="n">T_s_i</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    
+    <span class="c1"># Phasenwinkel für beide Abschnitte:</span>
+    <span class="n">phi1_rad_i</span> <span class="o">=</span> <span class="n">calculatePhi1</span><span class="p">(</span><span class="n">t1_s_i</span><span class="p">,</span> <span class="n">wStart_rad_per_s_i</span><span class="p">,</span> <span class="n">k_i</span><span class="p">,</span> <span class="n">T_s_i</span><span class="p">)</span>
+    <span class="n">phi2_rad_i</span> <span class="o">=</span> <span class="n">calculatePhi2</span><span class="p">(</span><span class="n">t2_s_i</span><span class="p">,</span> <span class="n">wStart_rad_per_s_i</span><span class="p">,</span> <span class="n">k_i</span><span class="p">,</span> <span class="n">T_s_i</span><span class="p">)</span>   
+    
+    <span class="c1"># Einhüllende für beide Abschnitte:</span>
+    <span class="n">a1_i</span> <span class="o">=</span> <span class="n">calculateAmplitude1</span><span class="p">(</span><span class="n">t1_s_i</span><span class="p">,</span> <span class="n">T_s_i</span><span class="p">)</span>
+    <span class="n">a2_i</span> <span class="o">=</span> <span class="n">calculateAmplitude2</span><span class="p">(</span><span class="n">t2_s_i</span><span class="p">,</span> <span class="n">T_s_i</span><span class="p">)</span>
+
+    <span class="c1"># Vollständigen Sweep zusammensetzen:</span>
+    <span class="n">sweep1_i</span> <span class="o">=</span> <span class="n">a1_i</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi1_rad_i</span><span class="p">)</span>
+    <span class="n">sweep2_i</span> <span class="o">=</span> <span class="n">a2_i</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi2_rad_i</span><span class="p">)</span>
+    <span class="n">t_s_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t1_s_i</span><span class="p">,</span> <span class="n">t2_s_i</span><span class="p">)</span>        
+    <span class="n">sweep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sweep1_i</span><span class="p">,</span> <span class="n">sweep2_i</span><span class="p">)</span>
+    
+    <span class="c1"># Graphische Darstellung des Zeitbereichs</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sweep von </span><span class="si">%d</span><span class="s1"> Hz zu </span><span class="si">%d</span><span class="s1"> Hz&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">fStart_Hz_i</span><span class="p">,</span> <span class="n">fEnd_Hz_i</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Zeit [s]&#39;</span><span class="p">)</span> 
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;x(t)&#39;</span><span class="p">)</span> 
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_s_i</span><span class="p">,</span> <span class="n">sweep</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+    <span class="c1"># FFT des Sweeps</span>
+    <span class="n">f_Hz</span><span class="p">,</span> <span class="n">sweep_fft_plot</span> <span class="o">=</span> <span class="n">fft_sweep</span><span class="p">(</span><span class="n">sweep</span><span class="p">,</span> <span class="n">fs_Hz</span><span class="p">)</span>
+
+    <span class="c1"># Graphische Darstellung des Frequenzbereichs</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Amplitudenfrequenzgang&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frequenz [Hz]&#39;</span><span class="p">)</span> 
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;|X(f)|&#39;</span><span class="p">)</span> 
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_Hz</span><span class="p">,</span> <span class="n">sweep_fft_plot</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">fStart_Hz_i</span> <span class="o">&lt;=</span> <span class="n">fEnd_Hz_i</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="n">fStart_Hz_i</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">fEnd_Hz_i</span><span class="o">*</span><span class="mf">1.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">sweep_fft_plot</span><span class="p">)</span><span class="o">*</span><span class="mf">1.1</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="n">fEnd_Hz_i</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">fStart_Hz_i</span><span class="o">*</span><span class="mf">1.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">sweep_fft_plot</span><span class="p">)</span><span class="o">*</span><span class="mf">1.1</span><span class="p">])</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+    
+    <span class="c1"># Optionale Audioausgabe</span>
+    <span class="k">if</span> <span class="n">output_sound_i</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">play_audio</span><span class="p">(</span><span class="n">sweep</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "2fd77e5386b048a2938d77b828b84381"}
+</script></div>
+</div>
+<hr class="docutils" />
+<p><a id='3'></a><div><img alt="../_images/TITLE-Python.png" src="../_images/TITLE-Python.png" /><h2 style="position: relative; top: 6px; left: 6px">3. Realisierung mit Python-Modulen</h2></div></p>
+<p>Im Modul scipy ist die Funktion <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.chirp.html">signal.chirp()</a> als Frequenzgesteuerter Kosinusgenerator vorhanden, dadurch können Sweeps deutlich einfacher erzeugt werden. Zudem kann mit dem Modul <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.spectrogram.html">signal.spectrogram()</a> das Signal in einem Spektrogramm betrachtet werden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Erzeugen des Sweep mittels signal.chirp()</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">chirp</span><span class="p">,</span> <span class="n">spectrogram</span>
+
+<span class="c1"># Sweep-Parameter definieren:</span>
+<span class="n">fsChirp_Hz</span> <span class="o">=</span> <span class="mi">16000</span>
+<span class="n">TChirp_s</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">tChirp_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">TChirp_s</span><span class="p">,</span> <span class="n">TChirp_s</span><span class="o">*</span><span class="n">fsChirp_Hz</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">chirpStartFreq_Hz</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">chirpEndFreq_Hz</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1"># Sweep und dessen Amplitudenfrequeuzgang berechnen:</span>
+<span class="n">xSweep</span> <span class="o">=</span> <span class="n">chirp</span><span class="p">(</span><span class="n">tChirp_s</span><span class="p">,</span> <span class="n">chirpStartFreq_Hz</span><span class="p">,</span> <span class="n">TChirp_s</span><span class="p">,</span> <span class="n">chirpEndFreq_Hz</span><span class="p">,</span> <span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+<span class="n">fChirp_Hz</span><span class="p">,</span> <span class="n">tChirpSg_s</span><span class="p">,</span> <span class="n">XSweep_f</span> <span class="o">=</span> <span class="n">spectrogram</span><span class="p">(</span><span class="n">xSweep</span><span class="p">,</span> <span class="n">fsChirp_Hz</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Linearer Chirp, f(0)=</span><span class="si">%d</span><span class="s1"> Hz, f(</span><span class="si">%d</span><span class="s1">)=</span><span class="si">%d</span><span class="s1"> Hz&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">chirpStartFreq_Hz</span><span class="p">,</span> <span class="n">TChirp_s</span><span class="p">,</span> <span class="n">chirpEndFreq_Hz</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Zeit [s]&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$x_</span><span class="si">{sweep}</span><span class="s1">$(t)&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tChirp_s</span><span class="p">,</span> <span class="n">xSweep</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Spektrogramm&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frequenz [Hz]&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;|$X_</span><span class="si">{sweep}</span><span class="s1">$(f)|&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">tChirpSg_s</span><span class="p">,</span> <span class="n">fChirp_Hz</span><span class="p">,</span> <span class="n">XSweep_f</span><span class="p">,</span><span class="n">shading</span><span class="o">=</span><span class="s1">&#39;gouraud&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2.1 - Sweep_solved_51_0.png" src="../_images/2.1 - Sweep_solved_51_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Aufgabe: Sweep abspielen</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Werte in 16-Bit-Daten konvertieren</span>
+<span class="n">sound</span> <span class="o">=</span> <span class="p">(</span><span class="n">xSweep</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">15</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">xSweep</span><span class="p">)))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">)</span>
+
+<span class="c1"># Abspielen</span>
+<span class="n">play_obj</span> <span class="o">=</span> <span class="n">sa</span><span class="o">.</span><span class="n">play_buffer</span><span class="p">(</span><span class="n">sound</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">fsChirp_Hz</span><span class="p">))</span>
+<span class="n">play_obj</span><span class="o">.</span><span class="n">wait_done</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Die Verwendung eines Spektrogramms statt eines einfachen Spektrums zur Darstellung des Frequenzbereiches (in diesem Falle in zusätzlicher Abhängigkeit von der Zeit) wird im nächsten Notebook noch ausführlich behandelt.</p>
+<hr class="docutils" />
+<section id="references">
+<h3>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>Titelbild von <a class="reference external" href="https://commons.wikimedia.org/wiki/File:Chirp_animation.gif?uselang=de">wikimedia</a></p></li>
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/Sweep_(Signalverarbeitung)">Sweep (Signalverarbeitung)</a></p></li>
+<li><p><a class="reference external" href="https://learn.digilentinc.com/Documents/132">Sinusoidal Sweep Signals</a></p></li>
+<li><p><a class="reference external" href="https://theaudioprogrammer.com/signal-analysis-ii-linear-vs-logarithmic-sine-sweep/">Sine Sweep</a></p></li>
+</ol>
+<hr class="docutils" />
+<div>Notebook erstellt von Arne-Lukas Fietkau, Yifei Li  und <a href="mailto:christoph.wagner@tu-dresden.de?Subject=Frage%20zu%20Jupyter%20Notebook%201.2%20IIR%20Filterentwurf" target="_top">Christoph Wagner</a></div></section>
+</section>
+</section>
+
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"255decef1c1940ff8b1a15402521384b": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "fb4ea9b1ee6c487fa153291da5884d80": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": ["widget-interact"], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_7b77bfa93c8e4a32a68e51b77a95bca0", "IPY_MODEL_1dd60c331f114772b3c7b1912bf502f1", "IPY_MODEL_5783763cd8ef4807aced1d7db3879834", "IPY_MODEL_7fe23540062145b2b23c862b6d5cc095", "IPY_MODEL_6d1d458e63e343bbb12cc8cde7889775", "IPY_MODEL_ace6403f2ca846b89e0b260bae1aa580", "IPY_MODEL_400ec21c304d4fd5acc645841f66285c", "IPY_MODEL_66bf7385e8f84d268bb52853de6525e2", "IPY_MODEL_b17de5f1f7524894b65551235031b1bc"], "layout": "IPY_MODEL_255decef1c1940ff8b1a15402521384b"}}, "4c5fffdb58ab414aba3e156ec369cd26": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "24d3d2432ecb42a58ec7fb921c37cf48": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "7b77bfa93c8e4a32a68e51b77a95bca0": {"model_name": "FloatSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "FloatSliderView", "continuous_update": true, "description": "T_s_i", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_4c5fffdb58ab414aba3e156ec369cd26", "max": 5.0, "min": 0.1, "orientation": "horizontal", "readout": true, "readout_format": ".2f", "step": 0.1, "style": "IPY_MODEL_24d3d2432ecb42a58ec7fb921c37cf48", "value": 2.0}}, "0fc2b3b848d645a99d2bc51b2d382748": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "54da1d532e2d4b49a56841ffd93e1338": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "1dd60c331f114772b3c7b1912bf502f1": {"model_name": "IntSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "IntSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "IntSliderView", "continuous_update": true, "description": "fStart_Hz_i", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_0fc2b3b848d645a99d2bc51b2d382748", "max": 5000, "min": 10, "orientation": "horizontal", "readout": true, "readout_format": "d", "step": 10, "style": "IPY_MODEL_54da1d532e2d4b49a56841ffd93e1338", "value": 10}}, "ed12f0c66df945faa3ae3380e1e3189e": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "68e80b2c5216446b872164d8ca9705dc": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "5783763cd8ef4807aced1d7db3879834": {"model_name": "IntSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "IntSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "IntSliderView", "continuous_update": true, "description": "fEnd_Hz_i", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_ed12f0c66df945faa3ae3380e1e3189e", "max": 5000, "min": 10, "orientation": "horizontal", "readout": true, "readout_format": "d", "step": 10, "style": "IPY_MODEL_68e80b2c5216446b872164d8ca9705dc", "value": 100}}, "5991cb0bc2c844f4a27717a1d5d92c65": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "71937b3590a14e368636de76d9b2edf9": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "7fe23540062145b2b23c862b6d5cc095": {"model_name": "CheckboxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "CheckboxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "CheckboxView", "description": "windowing_i", "description_tooltip": null, "disabled": false, "indent": true, "layout": "IPY_MODEL_5991cb0bc2c844f4a27717a1d5d92c65", "style": "IPY_MODEL_71937b3590a14e368636de76d9b2edf9", "value": false}}, "facee3f4d2f04837b7f790e19016e8d6": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "82879ea62d884c069fc240c8ea1bbf63": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "6d1d458e63e343bbb12cc8cde7889775": {"model_name": "DropdownModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DropdownModel", "_options_labels": ["tukey", "triang"], "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "DropdownView", "description": "window_type_i", "description_tooltip": null, "disabled": false, "index": 0, "layout": "IPY_MODEL_facee3f4d2f04837b7f790e19016e8d6", "style": "IPY_MODEL_82879ea62d884c069fc240c8ea1bbf63"}}, "cee3675427004441a1ccb822b5c70c51": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "620ef401ae8d41b9ae28ba06263de48e": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "ace6403f2ca846b89e0b260bae1aa580": {"model_name": "FloatSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "FloatSliderView", "continuous_update": true, "description": "win_alpha_i", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_cee3675427004441a1ccb822b5c70c51", "max": 1.0, "min": 0.0, "orientation": "horizontal", "readout": true, "readout_format": ".2f", "step": 0.01, "style": "IPY_MODEL_620ef401ae8d41b9ae28ba06263de48e", "value": 0.2}}, "3b73df69889b49e4b2a2c9208dac0604": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d45b43d650a5488ebce59f543aabf072": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "400ec21c304d4fd5acc645841f66285c": {"model_name": "CheckboxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "CheckboxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "CheckboxView", "description": "output_sound_i", "description_tooltip": null, "disabled": false, "indent": true, "layout": "IPY_MODEL_3b73df69889b49e4b2a2c9208dac0604", "style": "IPY_MODEL_d45b43d650a5488ebce59f543aabf072", "value": true}}, "510cec1f9f4e4a7ba1772991ccb3d776": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "011f062cf4bb46c0bef46b0ba1f47482": {"model_name": "ButtonStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ButtonStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "button_color": null, "font_weight": ""}}, "66bf7385e8f84d268bb52853de6525e2": {"model_name": "ButtonModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ButtonModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ButtonView", "button_style": "", "description": "Run Interact", "disabled": false, "icon": "", "layout": "IPY_MODEL_510cec1f9f4e4a7ba1772991ccb3d776", "style": "IPY_MODEL_011f062cf4bb46c0bef46b0ba1f47482", "tooltip": ""}}, "09c26d060eae484b94b093c7f4371fb9": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "b17de5f1f7524894b65551235031b1bc": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_09c26d060eae484b94b093c7f4371fb9", "msg_id": "", "outputs": []}}, "c7726e53f1f94dea9b5f8f259a9022fa": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "2fd77e5386b048a2938d77b828b84381": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": ["widget-interact"], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_184a70ae7d324ef3a423d78a44e3fda6", "IPY_MODEL_453153319db044c9a90206034669e6a9", "IPY_MODEL_5fa3763f433d470294e509e5479a09d2", "IPY_MODEL_4c9537b8e99e4a8d853709eb5c6d492c", "IPY_MODEL_b342b4d6bd5244a294962ef347d09b73", "IPY_MODEL_bddbaa654f9147ef99cd8ca0c2ab6f3b"], "layout": "IPY_MODEL_c7726e53f1f94dea9b5f8f259a9022fa"}}, "35c9b0661141469bb976ca998648568b": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "1c7a5492bd4e401aba1e48cb5eac8722": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "184a70ae7d324ef3a423d78a44e3fda6": {"model_name": "IntSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "IntSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "IntSliderView", "continuous_update": true, "description": "n_periods_i", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_35c9b0661141469bb976ca998648568b", "max": 1000, "min": 1, "orientation": "horizontal", "readout": true, "readout_format": "d", "step": 1, "style": "IPY_MODEL_1c7a5492bd4e401aba1e48cb5eac8722", "value": 300}}, "2b81bcd862874522a4f744ea6839b0f9": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "fa70486ff3a645f7b4f5124d932082f1": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "453153319db044c9a90206034669e6a9": {"model_name": "IntSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "IntSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "IntSliderView", "continuous_update": true, "description": "fStart_Hz_i", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_2b81bcd862874522a4f744ea6839b0f9", "max": 5000, "min": 10, "orientation": "horizontal", "readout": true, "readout_format": "d", "step": 10, "style": "IPY_MODEL_fa70486ff3a645f7b4f5124d932082f1", "value": 200}}, "62e93d6075b0447b98fdb419c544ae2e": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "a990955da9d542598c72c9b040faa05f": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "5fa3763f433d470294e509e5479a09d2": {"model_name": "IntSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "IntSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "IntSliderView", "continuous_update": true, "description": "fEnd_Hz_i", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_62e93d6075b0447b98fdb419c544ae2e", "max": 5000, "min": 10, "orientation": "horizontal", "readout": true, "readout_format": "d", "step": 10, "style": "IPY_MODEL_a990955da9d542598c72c9b040faa05f", "value": 1000}}, "43a199998278420aad181e30b6c5dd77": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "f500b4d7ad4a442297b17d830ac9eaa1": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "4c9537b8e99e4a8d853709eb5c6d492c": {"model_name": "CheckboxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "CheckboxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "CheckboxView", "description": "output_sound_i", "description_tooltip": null, "disabled": false, "indent": true, "layout": "IPY_MODEL_43a199998278420aad181e30b6c5dd77", "style": "IPY_MODEL_f500b4d7ad4a442297b17d830ac9eaa1", "value": true}}, "f9083178e32347c8b9e5aa87afab2b6f": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "b75ba8196eda48ea85ee11fec28861b9": {"model_name": "ButtonStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ButtonStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "button_color": null, "font_weight": ""}}, "b342b4d6bd5244a294962ef347d09b73": {"model_name": "ButtonModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ButtonModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ButtonView", "button_style": "", "description": "Run Interact", "disabled": false, "icon": "", "layout": "IPY_MODEL_f9083178e32347c8b9e5aa87afab2b6f", "style": "IPY_MODEL_b75ba8196eda48ea85ee11fec28861b9", "tooltip": ""}}, "9abc6288884146c8a90bba77a6e52b1b": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "bddbaa654f9147ef99cd8ca0c2ab6f3b": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_9abc6288884146c8a90bba77a6e52b1b", "msg_id": "", "outputs": []}}}, "version_major": 2, "version_minor": 0}
+</script>
+
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "Berni96/tud-sv",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Thema-2-Messung der Übertragungsfunktion"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../Thema-1-Filter/1.3%20-%20Anwendungsbeispiel_solved.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">1.3 -  Anwendungsbeispiel</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="2.2%20-%20LPC_solved.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">2.2 - Linear Predictive Coding</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By SHK<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

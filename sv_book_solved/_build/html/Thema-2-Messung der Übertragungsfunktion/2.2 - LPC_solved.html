@@ -1,0 +1,1262 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>2.2 - Linear Predictive Coding &#8212; SV-book</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.1 - Short Time Fourier Transformation" href="../Thema-3-Analyse%20nichtstation%C3%A4rer%20Signale/3.1%20-%20STFT_solved.html" />
+    <link rel="prev" title="2.1 - Sweep" href="2.1%20-%20Sweep_solved.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">SV-book</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../Einf%C3%BChrung%20in%20Python/0.1%20-%20Installationsanleitung.html">
+                    0.1 - Installationsanleitung
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Einführung in Python
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Einf%C3%BChrung%20in%20Python/0.2%20-%20Einf%C3%BChrung_solved.html">
+   0.2 - Einführung
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Thema-1-Filter
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Thema-1-Filter/1.1%20-%20FIR%20Filterentwurf_solved.html">
+   1.1 - FIR Filterentwurf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Thema-1-Filter/1.2%20-%20IIR%20Filterentwurf_solved.html">
+   1.2 - IIR-Filterentwurf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Thema-1-Filter/1.3%20-%20Anwendungsbeispiel_solved.html">
+   1.3 -  Anwendungsbeispiel
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Thema-2-Messung der Übertragungsfunktion
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="2.1%20-%20Sweep_solved.html">
+   2.1 - Sweep
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2.2 - Linear Predictive Coding
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Thema-3-Analyse nichtstationärer Signale
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Thema-3-Analyse%20nichtstation%C3%A4rer%20Signale/3.1%20-%20STFT_solved.html">
+   3.1 - Short Time Fourier Transformation
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/Berni96/tud-sv/main?urlpath=tree/sv_book/Thema-2-Messung der Übertragungsfunktion/2.2 - LPC_solved.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/Berni96/tud-sv"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/Berni96/tud-sv/issues/new?title=Issue%20on%20page%20%2FThema-2-Messung der Übertragungsfunktion/2.2 - LPC_solved.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/Thema-2-Messung der Übertragungsfunktion/2.2 - LPC_solved.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inhalt">
+   Inhalt
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grundidee">
+     Grundidee:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#references">
+     References
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>2.2 - Linear Predictive Coding</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inhalt">
+   Inhalt
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grundidee">
+     Grundidee:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#references">
+     References
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="linear-predictive-coding">
+<h1>2.2 - Linear Predictive Coding<a class="headerlink" href="#linear-predictive-coding" title="Permalink to this headline">#</a></h1>
+<img style="float: right; margin:5px 0px 0px 10px" src="img/2-title.png" width="500">
+Das "Linear Predictive Coding" (LPC) ist ein Verfahren, das hauptsächlich in der Audiosignalverarbeitung und Sprachverarbeitung verwendet wird, um die Spektralhüllkurve eines digitalen Sprachsignals in komprimierter Form unter Verwendung der Informationen eines linearen Vorhersagemodells darzustellen. Es ist eine der leistungsstärksten Sprachanalysetechniken und eine der nützlichsten Methoden zum Codieren von Sprache in guter Qualität mit einer niedrigen Bitrate und liefert hochgenaue Schätzungen von Sprachparametern. LPC ist die am weitesten verbreitete Methode in der Sprachcodierung und Sprachsynthese.
+<p>Thematisch wird LPC erst in Thema5-Hüllkurven behandelt, da sich mit LPC aber im Zuge der Bestimmung der Einhüllenden auch die Systemfunktion des z.B. Vokaltraktes (d.h. des dazugehörige <em>Synthesfilters</em>) schätzen lassen, wird sie in den Notebooks an dieser Stelle eingeführt. LPC unterscheidet sich aber grundlegend von dem Vorgehen der Messung der Übertragungsfunktion, wie es am Beispiel des Sweeps im Notebook 2.1 behandelt wurde.</p>
+<section id="inhalt">
+<h2>Inhalt<a class="headerlink" href="#inhalt" title="Permalink to this headline">#</a></h2>
+<table style="width:256px; border: 1px solid black; display: inline-block">
+    <tr>
+        <td style="text-align:right"><img src="img/2-1.png" style="float:left"></td>
+        <td style="text-align:left" width=128px>
+            <a style="color:black; font-size:12px; font-weight:bold; text-decoration:none" href='#1'>
+                1. Grundlagen
+            </a>
+        </td>
+    </tr>    
+    <tr>
+        <td  style="text-align:right" width=64px><img src="img/2-2.jpg" style="float:left"></td>
+        <td style="text-align:left" width=256px>
+            <a style="color:black; font-size:12px; font-weight:bold; text-decoration:none" href='#2'>
+                2. Anwendungsbeispiel
+            </a>
+        </td>
+    </tr>  
+</table>
+<hr class="docutils" />
+<p><a id='1'></a></p>
+<div>
+    <img src="img/2-1.png" style="float:left">
+    <h2 style="position: relative; top: 6px; left: 6px">
+        1. Grundlagen
+    </h2>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<img style="float:top; margin:5px 0px 0px 10px" src="img/Quelle-Filter-Modell.jpg" width="800">
+<p>Die artikulatorische Sprachsynthese (anders als z.B. die datengestützte Sprachsynthese, wie sie in sämtlichen Sprachassistenten angewendet wird) basiert auf der sog. Quelle-Filter-Theorie, welche davon ausgeht, dass die Sprachproduktion in zwei Prozesse unterteilt werden kann, die unabhängig voneinander sind: die Erzeugung eines Anregungssignales und die anschließende Filterung dieses Anregungssignales. Unabhängig bedeutet in diesem Kontext, dass der nachgeschaltete Filterprozess das Anregungssignal nicht verändert, also keine Rückkopplung entsteht.</p>
+<p>Vereinfacht dargestellt erzeugen bei der Sprachproduktion die Glottis und die Stimmlippen unter Anregung eines Luftstromes das Anregungssignal, welches vom daraufffolgenden Vokaltrakt gefiltert wird. Das Anregungssignal kann dabei stimmhaft sein (d.h. es besitzt eine Grundperiode), stimmlos (Rauschrignal) oder eine Mischung aus Beidem. Wenn sich die Stimmlippen in einem vokalisierten Zustand befinden (Vibration der Stimmlippen), werden stimmhafte Laute (zum Beispiel Vokale) erzeugt. Wenn sich die Stimmbänder in einem “stillen” Zustand befinden, werden stimmlose Laute (zum Beispiel Konsonanten) erzeugt.</p>
+<p>LPC bietet die Möglichkeit, die Systemfunktion des Vokaltraktes zu schätzen, ohne das Anregungssignal zu kennen.</p>
+<section id="grundidee">
+<h3>Grundidee:<a class="headerlink" href="#grundidee" title="Permalink to this headline">#</a></h3>
+<p>Die Grundidee der LPC ist zunächst generell, dass die einzelnen Abtastwerte eines linear gefilerten Ausgangssignals $y(k)$ (in Falle der Sprachproduktion das abgestrahle Sprachschallsignal) nicht unabhängig voneinander sind. Stattdessen lässt sich jeder Abtastwert $y(k)$ aus einer Linearkombination endlich vielen vorangegangenen Abtastwerten annähern:
+\begin{equation}
+\hat{y}(k)=\sum_{i=1}^{N}a_{i}y(k-i)
+\end{equation}
+Die Gewichtungsfaktoren $a_i$ heißen <em>Prädiktorkoeffizienten</em>.</p>
+<p>Für jeden Abtastwert wird damit ein gewisser Prädiktionsfehler $e(k)$ gemacht:
+\begin{equation}
+e(k)=y(k)-\hat{y}(k)=y(k)-\sum_{i=1}^{N}a_{i}y(k-i)
+\end{equation}</p>
+<p>Die $a_{i}$ werden geschätzt, indem der mittlere quadratische Fehler (der sog. MSE, <em>mean squared error</em>) im betrachteten Signalabschnitt minimiert wird.</p>
+<p>Die Gleichung für $y(k)$ entspricht formal der Rekursionsgleichung für einen IIR-Allpol-Filter $H(z)$, wobei das Fehlersignal als (mit der Verstärkung $G$ skaliertes) Eingangssignal $x(k)$ betrachtet werden kann:
+\begin{equation}
+y(k)=e(k)+\sum_{i=1}^{N}a_{i}y(k-i)=Gx(k)+\sum_{i=1}^{N}a_{i}y(k-i)
+\end{equation}</p>
+<p>Die Systemfunktion ist somit
+\begin{equation}
+H(z)=\frac{Y(z)}{E(z)}=\frac{1}{1-\sum_{i=1}^{N}a_{i}z^{-i}}
+\end{equation}</p>
+<p>Dieser Filter ist der sogenannte <strong>LPC-Synthesefilter</strong>. Der Amplitudengang des Synthesefilters entspricht bei einem weißen Anregungsspektrum der
+Hüllkurve im Frequenzbereich.</p>
+<p>Umgekehrt lässt sich das Fehlersignal $e(k)$ durch die Filterung von $y(k)$ mit dem inversen Filter $A(z) = 1/H(z)$ bestimmen. Dieser Filter wird als <strong>Analysefilter</strong> bezeichnet.</p>
+<a class="reference internal image-reference" href="../_images/lpc.png"><img alt="../_images/lpc.png" src="../_images/lpc.png" style="width: 800px;" /></a>
+<hr class="docutils" />
+<p><a id='2'></a></p>
+<div>
+    <img src="img/2-2.jpg" style="float:left">
+    <h2 style="position: relative; top: 6px; left: 6px">
+        2.  Anwendungsbeispiel
+    </h2>
+</div><p>LPC findet, wie bereits erwähnt, breite Anwendung in der Spracherkennung, Sprachsynthese und Sprachkompression. Als Beispiel soll hier die lineare Prädiktion zur Formanterkennung verwendet werden, d.h., um die Formantfrequenzen (Resonanzfrequenzen) des Vokaltrakts zu schätzen. Im Quelle-Filter Sprachsignalmodell entsprechen die Formantfrequenzen den komplexen Polpaaren der Übertragungsfunktion.</p>
+<p>Ausgehend von einem kurzen Abschnitt des Signals werden die Prädiktorkoeffizienten geschätzt, welche wiederum die Filterkoeffizienten $a_i$ des Nennerpolynoms darstellen. Jede komplexe Wurzel der diskreten Systemfunktion des Synthesefilters lässt sich bekanntermaßen auch über
+\begin{equation}
+p_{i}=r_{i}e^{j \Omega_{i}},\qquad r_i=\sqrt{real(p_i)^2+imag(p_i)^2},\qquad \Omega_i = atan\left(\frac{imag(p_i)}{real(p_i)}\right)
+\end{equation}
+darstellen, d.h. die geschätzten Formantfrequenzen $f_i$ sind
+\begin{equation}
+f_i = \frac{\Omega_i\cdot f_s}{2\pi},
+\end{equation}
+Wobei nur die Frequenzen mit  positivem Vorzeichen in Frage kommen. Außerdem müssen die Formantfrequenzen überhalb der Grundfrequenz liegen, d.h. eine zusätzliche Bedingung ist $f_i &gt;\approx$ 90-100 Hz.</p>
+<p>Importieren Sie zuerst die verwendeten externen Module:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Import externer Module</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Lösung</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">simpleaudio</span> <span class="k">as</span> <span class="nn">sa</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">from</span> <span class="nn">scipy.io</span> <span class="kn">import</span> <span class="n">wavfile</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
+<span class="kn">import</span> <span class="nn">librosa</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact_manual</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nun laden Sie das Audiosignal <code class="docutils literal notranslate"><span class="pre">akustik.wav</span></code> in das Projekt und bestimmen Sie dessen Eigenschaften:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Audiosignal laden</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="c1"># Lösung</span>
+<span class="n">fs_Hz</span><span class="p">,</span> <span class="n">audioSignal</span> <span class="o">=</span> <span class="n">wavfile</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;data/akustik.wav&#39;</span><span class="p">)</span>   <span class="c1"># Sample Rate, Audiosignal im Array-Form</span>
+<span class="n">audioSignal</span> <span class="o">=</span> <span class="n">audioSignal</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">audioSignal</span><span class="p">))</span>   <span class="c1"># Normalisierung</span>
+<span class="n">signalLength</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">audioSignal</span><span class="p">)</span>                         <span class="c1"># Länge des Audiosignals</span>
+<span class="n">T_s</span> <span class="o">=</span> <span class="n">signalLength</span><span class="o">/</span><span class="n">fs_Hz</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">fs_Hz</span>                      <span class="c1"># Zeit</span>
+<span class="n">t_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T_s</span><span class="p">,</span> <span class="n">signalLength</span><span class="p">)</span>                 <span class="c1"># Zeitbereich</span>
+<span class="n">f_Hz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">fs_Hz</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">signalLength</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>         <span class="c1"># Frequenzbereich</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Abtastrate : </span><span class="si">%d</span><span class="s2"> Hz, Signaldauer : </span><span class="si">%.2f</span><span class="s2"> s&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">fs_Hz</span><span class="p">,</span> <span class="n">T_s</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Abtastrate : 16000 Hz, Signaldauer : 3.76 s
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hören Sie sich nun das Array <code class="docutils literal notranslate"><span class="pre">audioSignal</span></code> an. Erstellen Sie dafür eine Funktion “play_audio”, die mittels simpleaudio Zahlenarrays als Signal über die Lautsprecher ausgibt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Definition der Funktion play_audio</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="c1"># Lösung</span>
+<span class="k">def</span> <span class="nf">play_audio</span><span class="p">(</span><span class="n">acoustic_signal_i</span><span class="p">):</span>
+    <span class="n">sound</span> <span class="o">=</span> <span class="p">(</span><span class="n">acoustic_signal_i</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">15</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">acoustic_signal_i</span><span class="p">)))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">)</span>
+    <span class="n">play_obj</span> <span class="o">=</span> <span class="n">sa</span><span class="o">.</span><span class="n">play_buffer</span><span class="p">(</span><span class="n">sound</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">fs_Hz</span><span class="p">))</span>
+    <span class="n">play_obj</span><span class="o">.</span><span class="n">wait_done</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Audioausgabe</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Lösung</span>
+<span class="n">play_audio</span><span class="p">(</span><span class="n">audioSignal</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Zur Bestimmung der Segmentlänge ist ein Kompromiss zwischen zwei gewünschten Eigenschaften zu finden:</p>
+<ol class="simple">
+<li><p>Das Segment soll so klein wie möglich sein, um das Spektrum an einem Zeitpunkt zu erhalten,</p></li>
+<li><p>Das Segment soll so groß wie möglich sein, um das Spektrum invariant gegenüber der Lage der Gtrundperiode zu machen.</p></li>
+</ol>
+<p>Die Grundperiode des Signals liegt zwischen 8-12 ms. Als guten Kompromiss zwischen den beiden Eigenschaften hat sich die Segmentlänge von 32 ms erwiesen. Das hat auch den Vorteil, dass diese Länge bei einer Abtastrate von 16 kHz insgesamt 512 Elemente umfasst, welches eine optimale Größe bei der Anwendung der FFT bedeutet.</p>
+<p>Schneiden Sie das Signal nun in ein 32 ms bzw. 512 Elemente langes Segment, in dem der Vokal /a/ gesagt wird (Startpunkt zum Beispiel bei 1,18 s), und berechnen Sie das Spektrum des /a/-Vokaltrakt:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Spektrum eines 32 ms langen /a/-Segments des Wortes „Akustik“</span>
+<span class="sd">&#39;&#39;&#39;</span> 
+<span class="c1"># Lösung</span>
+<span class="c1"># Zeitintervall bestimmen</span>
+<span class="n">n_start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1.18</span> <span class="o">/</span> <span class="n">T_s</span> <span class="o">*</span> <span class="n">signalLength</span><span class="p">)</span>                <span class="c1"># Startsample-Nummer</span>
+<span class="n">n_end</span> <span class="o">=</span> <span class="n">n_start</span> <span class="o">+</span> <span class="mi">512</span>                                   <span class="c1"># Endsample-Nummer</span>
+<span class="n">t_aSegment_s</span> <span class="o">=</span> <span class="n">t_s</span><span class="p">[</span><span class="n">n_start</span><span class="p">:</span><span class="n">n_end</span><span class="p">]</span>
+
+<span class="c1"># Audiosignal segmentieren</span>
+<span class="n">a_segment</span> <span class="o">=</span> <span class="n">audioSignal</span><span class="p">[</span><span class="n">n_start</span><span class="p">:</span><span class="n">n_end</span><span class="p">]</span>               
+
+<span class="c1"># Spektrum berechnen</span>
+<span class="n">n_fft</span> <span class="o">=</span> <span class="mi">512</span><span class="p">;</span> <span class="c1"># Länge von FFT</span>
+<span class="n">f_aSegment_Hz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">fs_Hz</span><span class="o">-</span><span class="n">fs_Hz</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">fs_Hz</span><span class="o">/</span><span class="n">n_fft</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_fft</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>   <span class="c1"># Frequenzbereich</span>
+<span class="n">aSegment_fft</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">fftpack</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">a_segment</span><span class="p">,</span> <span class="n">n_fft</span><span class="p">)</span>
+<span class="n">aSegment_fft_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">aSegment_fft</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">f_aSegment_Hz</span><span class="p">)])</span> <span class="o">/</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_fft</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Graphische Darstellung </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Audiosignal eines /a/-Segments&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Zeit [s]&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;x(t)&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_aSegment_s</span><span class="p">,</span> <span class="n">a_segment</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Amplitudenfrequenzgang des /a/-Segments&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frequenz [Hz]&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;log|X(f)|&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_aSegment_Hz</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">aSegment_fft_plot</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2.2 - LPC_solved_13_0.png" src="../_images/2.2 - LPC_solved_13_0.png" />
+</div>
+</div>
+<p>Die FFT geht von einer periodischen Fortführung des Signals aus. Beim Segmentieren des Signals entstehen dadurch Sprünge zwischen dem ersten und letzten Wert, die hochfrequente Anteile erzeugen, die im Signal eigentlich nicht vorhanden sind. Deshalb sollte das Signal vor der Verarbeitung gefenstert werden. Verwenden Sie dafür ein “Von-Hann-Fenster”:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Anwendung des von-Hann-Fensters auf das /a/-Segment</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="c1"># Lösung</span>
+<span class="c1"># Audiosegment fenstern</span>
+<span class="n">a_segment_win</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">hann</span><span class="p">(</span><span class="n">a_segment</span><span class="o">.</span><span class="n">size</span><span class="p">)</span><span class="o">*</span><span class="n">a_segment</span>
+
+<span class="c1"># Spektrum des von-Hann-gefensterten Signals</span>
+<span class="n">aSegment_fft_win</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">fftpack</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">a_segment_win</span><span class="p">,</span> <span class="n">n_fft</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Graphische Darstellung</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Audiosignal des gefensterten /a/-Segments&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Zeit [s]&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;x(t)&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_aSegment_s</span><span class="p">,</span> <span class="n">a_segment_win</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Amplitudenfrequenzgang des gefensterten /a/-Segments&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frequenz [Hz]&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;log|X(f)|&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_aSegment_Hz</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">aSegment_fft_win</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">f_aSegment_Hz</span><span class="p">)])))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2.2 - LPC_solved_16_0.png" src="../_images/2.2 - LPC_solved_16_0.png" />
+</div>
+</div>
+<p>Geben Sie sich nun das segmentierte Audiosignal <code class="docutils literal notranslate"><span class="pre">a_segment</span></code> aus. Da das Signal nur 32 ms lang ist, muss das Signal wiederholt werden. Definieren Sie deshalb dafür eine Funktion “repeat_audio”, die das eingegebene Signal mehrfach hintereinander hängt (erwarten sie dabei keine schön klingendes Signal. Es soll lediglich demonstriert werden, dass eine Tendenz hörbar ist, um welchen Vokal es sich handelt, selbst wenn eine sehr simple Verkettung der Einzelsegmente vorgenommen wird).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Definition der Funktion repeat_audio</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="c1"># Lösung</span>
+<span class="k">def</span> <span class="nf">repeat_audio</span><span class="p">(</span><span class="n">acoustic_signal_i</span><span class="p">,</span> <span class="n">signal_output_i</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">sound</span> <span class="o">=</span> <span class="n">acoustic_signal_i</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+        <span class="n">sound</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">sound</span><span class="p">,</span><span class="n">sound</span><span class="p">),</span> <span class="n">axis</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>   
+
+    <span class="c1"># Ausgabe</span>
+    <span class="k">if</span> <span class="n">signal_output_i</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">sound</span> <span class="o">=</span> <span class="p">(</span><span class="n">sound</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">15</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">sound</span><span class="p">)))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">)</span>
+        <span class="n">play_obj</span> <span class="o">=</span> <span class="n">sa</span><span class="o">.</span><span class="n">play_buffer</span><span class="p">(</span><span class="n">sound</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">fs_Hz</span><span class="p">))</span>
+        <span class="n">play_obj</span><span class="o">.</span><span class="n">wait_done</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">sound</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hören Sie Sich sowohl das unbearbeitete als auch das gefensterte Segment an:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Audioausgabe</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="c1"># Lösung</span>
+<span class="c1"># a_segment_rep = repeat_audio(a_segment, signal_output_i = True)</span>
+<span class="n">a_segment_win_rep</span> <span class="o">=</span> <span class="n">repeat_audio</span><span class="p">(</span><span class="n">a_segment_win</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># play_audio(a_segment_rep)</span>
+<span class="c1"># play_audio(a_segment_win_rep)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Das bloße wiederholte Abspielen des Segments sorgt für eine schlechte Audioausgabe. Um dies etwas zu verbessern, kann das Signal überlappt hintereinander abgespielt werden (dies wird nochmal wichtiger beim Abspielen des synthetisierten Signals). Die folgende Funktion “overlap_audio” tut genau das. Als Eingabe wird das Segment und eine Wiederholzeit angegeben. Das Signal wird ausgegeben und zudem die berechnete Überlappung der Segmente zurückgegeben. Wenden Sie die Funktion auf das /a/-Segment an mit einer Wiederholdauer von 10 ms. Hören Sie sich das Signal an und schauen Sie sich einen Ausschnitt der entstandenen Audiospur an.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Definition der Funktion repeat_audio</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">overlap_audio</span><span class="p">(</span><span class="n">signal_segment_i</span><span class="p">,</span> <span class="n">t_overlap_ms_i</span><span class="p">,</span> <span class="n">signal_output</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="n">n_repetition</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.001</span> <span class="o">*</span> <span class="n">t_overlap_ms_i</span> <span class="o">*</span> <span class="mi">16000</span><span class="p">)</span>   <span class="c1"># Berechnung der Wiederholdauer in Abtastpunkte</span>
+    
+    <span class="n">playable_audio</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">512</span><span class="p">)</span>                       <span class="c1"># Initialisierung</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">):</span>                              <span class="c1"># Überlappung von 200 Segmenten</span>
+        <span class="n">playable_audio</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">n_repetition</span><span class="p">:]</span> <span class="o">=</span> <span class="n">playable_audio</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">n_repetition</span><span class="p">:]</span> <span class="o">+</span> <span class="n">signal_segment_i</span>
+        <span class="n">playable_audio</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">playable_audio</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_repetition</span><span class="p">)))</span>
+    <span class="n">playable_audio</span> <span class="o">=</span> <span class="n">playable_audio</span><span class="p">[</span><span class="mi">190</span><span class="p">:</span><span class="o">-</span><span class="mi">512</span><span class="p">]</span>            <span class="c1"># Schneiden der Unüberlappten Stellen (vorne und hinten)</span>
+    
+    <span class="c1"># Ausgabe</span>
+    <span class="k">if</span> <span class="n">signal_output</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">sound</span> <span class="o">=</span> <span class="p">(</span><span class="n">playable_audio</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">15</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">playable_audio</span><span class="p">)))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">)</span>
+        <span class="n">play_obj</span> <span class="o">=</span> <span class="n">sa</span><span class="o">.</span><span class="n">play_buffer</span><span class="p">(</span><span class="n">sound</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">fs_Hz</span><span class="p">))</span>
+        <span class="n">play_obj</span><span class="o">.</span><span class="n">wait_done</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">playable_audio</span>                                <span class="c1"># Rückgabe des berechneten Arrays</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Audioausgabe und graphische Darstellung der </span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="c1"># Lösung</span>
+<span class="n">T_overlap_ms</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">playable_audio_a</span> <span class="o">=</span> <span class="n">overlap_audio</span><span class="p">(</span><span class="n">a_segment</span><span class="p">,</span> <span class="n">T_overlap_ms</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="n">playable_audio_a_win</span> <span class="o">=</span> <span class="n">overlap_audio</span><span class="p">(</span><span class="n">a_segment_win</span><span class="p">,</span> <span class="n">T_overlap_ms</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+
+<span class="n">t_range_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="mi">1024</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">fs_Hz</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Graphische Darstellung</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;addiertes Audiosignal des /a/-Segments&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Zeit [s]&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;x(t)&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_range_s</span><span class="p">,</span> <span class="n">playable_audio_a</span><span class="p">[:</span><span class="mi">1024</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;addiertes Audiosignal des gefensterten /a/-Segments&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Zeit [s]&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;x(t)&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_range_s</span><span class="p">,</span> <span class="n">playable_audio_a_win</span><span class="p">[:</span><span class="mi">1024</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2.2 - LPC_solved_24_0.png" src="../_images/2.2 - LPC_solved_24_0.png" />
+</div>
+</div>
+<hr class="docutils" />
+<p>Ähnlich können Sie das Spektrum eines 32 ms langen /u/-Segments des Wortes „Akustik“ berechnen (Anfangspunkt zum Beispiel: 1,42 s). Berechnen Sie das Spektrum auch für das Von-Hann-gefensterte Segment:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Spektrum eines 32 ms langen /u/-Segments des Wortes „Akustik“ berechnen</span>
+<span class="sd">&#39;&#39;&#39;</span> 
+<span class="c1"># Lösung</span>
+<span class="c1"># Zeitintervall bestimmen</span>
+<span class="n">n_start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1.42</span> <span class="o">/</span> <span class="n">T_s</span> <span class="o">*</span> <span class="n">signalLength</span><span class="p">)</span>  <span class="c1"># Startsample-Nummer</span>
+<span class="n">n_end</span> <span class="o">=</span> <span class="n">n_start</span> <span class="o">+</span> <span class="mi">512</span>                     <span class="c1"># Endsample-Nummer</span>
+
+<span class="c1"># Audiosignal segmentieren</span>
+<span class="n">t_uSegment_s</span> <span class="o">=</span> <span class="n">t_s</span><span class="p">[</span><span class="n">n_start</span><span class="p">:</span><span class="n">n_end</span><span class="p">]</span>
+<span class="n">u_segment</span> <span class="o">=</span> <span class="n">audioSignal</span><span class="p">[</span><span class="n">n_start</span><span class="p">:</span><span class="n">n_end</span><span class="p">]</span>    
+
+<span class="c1"># Fenstern</span>
+<span class="n">u_segment_win</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">hann</span><span class="p">(</span><span class="n">u_segment</span><span class="o">.</span><span class="n">size</span><span class="p">)</span><span class="o">*</span><span class="n">u_segment</span>
+
+<span class="c1"># Spektrum berechnen</span>
+<span class="n">n_fft</span> <span class="o">=</span> <span class="mi">512</span>     <span class="c1"># Länge von FFT</span>
+<span class="n">f_uSegment_Hz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">fs_Hz</span><span class="o">-</span><span class="n">fs_Hz</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">fs_Hz</span><span class="o">/</span><span class="n">n_fft</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_fft</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>   <span class="c1"># Frequenzbereich</span>
+
+<span class="n">uSegment_fft</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">fftpack</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">u_segment</span><span class="p">,</span> <span class="n">n_fft</span><span class="p">)</span>
+<span class="n">uSegment_win_fft</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">fftpack</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">u_segment_win</span><span class="p">,</span> <span class="n">n_fft</span><span class="p">)</span>
+<span class="n">uSegment_fft_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">uSegment_fft</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">f_uSegment_Hz</span><span class="p">)])</span> <span class="o">/</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_fft</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">uSegment_win_fft_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">uSegment_win_fft</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">f_uSegment_Hz</span><span class="p">)])</span> <span class="o">/</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_fft</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Graphische Darstellung</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Audiosignal des /u/-Segments&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Zeit [s]&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;x(t)&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_uSegment_s</span><span class="p">,</span> <span class="n">u_segment</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Amplitudenfrequenzgang des /u/-Segments&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frequenz [Hz]&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;log|X(f)|&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_uSegment_Hz</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">uSegment_fft_plot</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">223</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Audiosignal des gefensterten /u/-Segments&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Zeit [s]&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;x(t)&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_uSegment_s</span><span class="p">,</span> <span class="n">u_segment_win</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">224</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Amplitudenfrequenzgang des gefensterten /u/-Segments&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frequenz [Hz]&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;log|X(f)|&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_uSegment_Hz</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">uSegment_win_fft_plot</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2.2 - LPC_solved_27_0.png" src="../_images/2.2 - LPC_solved_27_0.png" />
+</div>
+</div>
+<p>Geben Sie sich nun auch das segmentierte Signal <code class="docutils literal notranslate"><span class="pre">u_segment</span></code> und das gefensterte Signal <code class="docutils literal notranslate"><span class="pre">u_segment_win</span></code> mit den Funktionen “repeat_audio” und “overlap_audio” (10 ms-Wiederholdauer) aus:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Audioausgabe</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Lösung</span>
+<span class="n">T_overlap_ms</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">playable_audio_u</span> <span class="o">=</span> <span class="n">overlap_audio</span><span class="p">(</span><span class="n">u_segment</span><span class="p">,</span> <span class="n">T_overlap_ms</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="n">playable_audio_u_win</span> <span class="o">=</span> <span class="n">overlap_audio</span><span class="p">(</span><span class="n">u_segment_win</span><span class="p">,</span> <span class="n">T_overlap_ms</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+
+<span class="n">t_range_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="mi">1024</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">fs_Hz</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Graphische Darstellung</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;addiertes Audiosignal des /u/-Segments&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Zeit [s]&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;x(t)&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_range_s</span><span class="p">,</span> <span class="n">playable_audio_u</span><span class="p">[:</span><span class="mi">1024</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;addiertes Audiosignal des gefensterten /u/-Segments&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Zeit [s]&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;x(t)&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_range_s</span><span class="p">,</span> <span class="n">playable_audio_u_win</span><span class="p">[:</span><span class="mi">1024</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2.2 - LPC_solved_30_0.png" src="../_images/2.2 - LPC_solved_30_0.png" />
+</div>
+</div>
+<p>Jetzt können wir LP-Koeffizienten berechnen, um die Pole der Systemfunktion des Synthesefilters zu bestimmen. Dafür verwenden wir nun direkt eine Funktion des Moduls <code class="docutils literal notranslate"><span class="pre">librosa</span></code>, der LP-Koeffizienten sucht: <a class="reference external" href="https://librosa.org/doc/latest/generated/librosa.lpc.html">librosa.lpc(y, order)</a></p>
+<p>Dieser soll zunächst für das ungefensterte /a/-Segment “a_segment” mit einer Filterordnung der Größe N = 12 betrachtet werden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Die LP-Koeffizienten des /a/-Segments berechnen und die Frequenzgang bzw. Polverteilung des Synthesefilters aufzeichnen</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="c1"># Lösung</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">12</span>                                            <span class="c1"># Modellordnung</span>
+<span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">librosa</span><span class="o">.</span><span class="n">lpc</span><span class="p">(</span><span class="n">a_segment</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>             <span class="c1"># LP-Koeffizienten bestimmen</span>
+<span class="n">fH_Hz</span><span class="p">,</span> <span class="n">H</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">fs_Hz</span><span class="p">)</span>     <span class="c1"># Amplitudenfrequenzgang</span>
+<span class="n">z</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">tf2zpk</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>               <span class="c1"># Null-Pol Verteilung</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\bernh\AppData\Local\Temp\ipykernel_31504\1322339488.py:7: FutureWarning: Pass order=12 as keyword args. From version 0.10 passing these as positional arguments will result in an error
+  b, a = [1], librosa.lpc(a_segment, N)             # LP-Koeffizienten bestimmen
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Graphische Darstellung</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Amplitudenfrequenzgang des Synthesefilters für /a/ mit Ordnung=</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span><span class="k">N</span>)
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frequenz [Hz]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$log|H(e^</span><span class="si">{jΩ}</span><span class="s1">)|$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fH_Hz</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">H</span><span class="p">)))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Polverteilung des Synthesefilters mit Ordnung=</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span><span class="k">N</span>)
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Real&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Image&#39;</span><span class="p">)</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>  
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2.2 - LPC_solved_33_0.png" src="../_images/2.2 - LPC_solved_33_0.png" />
+</div>
+</div>
+<p>Kritisch ist dabei die Wahl der „richtigen“ Modellordnung N. Die Unterschiede im Frequenzgang bei der Wahl unterschiedlicher Modellgrößern, soll nun für das /u/-Vokal-Segment genauer betrachtet werden. Erzeugen Sie dafür mittels for-Schleife die Amplitudenfrequenzgänge bei Wahl der Synthesesfilterordnung auf 4., 8., 12., 20. und 24. Ordnung:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Aufgabe: Die LP-Koeffizienten des /u/-Segments mit verschiedenen Ordnungen berechnen und</span>
+<span class="sd">          die Frequenzgang bzw. Null-Pol Verteilung des Synthesefilters aufzeichnen</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="c1"># Lösung</span>
+<span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">24</span><span class="p">):</span>  
+    <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">librosa</span><span class="o">.</span><span class="n">lpc</span><span class="p">(</span><span class="n">u_segment</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>            <span class="c1"># LP-Koeffizienten bestimmen</span>
+    <span class="n">fH_Hz</span><span class="p">,</span> <span class="n">H</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">fs_Hz</span><span class="p">)</span>    <span class="c1"># Amplitudenfrequenzgang</span>
+    <span class="n">z</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">tf2zpk</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>              <span class="c1"># Null-Pol Verteilung</span>
+
+    <span class="c1"># Graphische Darstellung</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Amplitudenfrequenzgang des Synthesefilters für /u/ mit Ordnung=</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span><span class="k">N</span>)
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frequenz [Hz]&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$log|H(e^</span><span class="si">{jΩ}</span><span class="s1">)|$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fH_Hz</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">H</span><span class="p">)))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Polverteilung des Synthesefilters mit Ordnung=</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span><span class="k">N</span>)
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Real&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Image&#39;</span><span class="p">)</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>  
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\bernh\AppData\Local\Temp\ipykernel_31504\1368372881.py:8: FutureWarning: Pass order=4 as keyword args. From version 0.10 passing these as positional arguments will result in an error
+  b, a = [1], librosa.lpc(u_segment, N)            # LP-Koeffizienten bestimmen
+</pre></div>
+</div>
+<img alt="../_images/2.2 - LPC_solved_35_1.png" src="../_images/2.2 - LPC_solved_35_1.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\bernh\AppData\Local\Temp\ipykernel_31504\1368372881.py:8: FutureWarning: Pass order=8 as keyword args. From version 0.10 passing these as positional arguments will result in an error
+  b, a = [1], librosa.lpc(u_segment, N)            # LP-Koeffizienten bestimmen
+</pre></div>
+</div>
+<img alt="../_images/2.2 - LPC_solved_35_3.png" src="../_images/2.2 - LPC_solved_35_3.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\bernh\AppData\Local\Temp\ipykernel_31504\1368372881.py:8: FutureWarning: Pass order=12 as keyword args. From version 0.10 passing these as positional arguments will result in an error
+  b, a = [1], librosa.lpc(u_segment, N)            # LP-Koeffizienten bestimmen
+</pre></div>
+</div>
+<img alt="../_images/2.2 - LPC_solved_35_5.png" src="../_images/2.2 - LPC_solved_35_5.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\bernh\AppData\Local\Temp\ipykernel_31504\1368372881.py:8: FutureWarning: Pass order=20 as keyword args. From version 0.10 passing these as positional arguments will result in an error
+  b, a = [1], librosa.lpc(u_segment, N)            # LP-Koeffizienten bestimmen
+</pre></div>
+</div>
+<img alt="../_images/2.2 - LPC_solved_35_7.png" src="../_images/2.2 - LPC_solved_35_7.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\bernh\AppData\Local\Temp\ipykernel_31504\1368372881.py:8: FutureWarning: Pass order=24 as keyword args. From version 0.10 passing these as positional arguments will result in an error
+  b, a = [1], librosa.lpc(u_segment, N)            # LP-Koeffizienten bestimmen
+</pre></div>
+</div>
+<img alt="../_images/2.2 - LPC_solved_35_9.png" src="../_images/2.2 - LPC_solved_35_9.png" />
+</div>
+</div>
+<p>Um sich nun den Synthesefilter anzuhören, kann dieser invers Fouriertransformiert werden, um daraus die Impulsantwort zu erhalten:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Impulsantwort des modellierten /u/-Vokalfilters mit der Ordnung N = 24</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="c1"># Lösung</span>
+<span class="c1"># Impulsantwort h des Modellfilters H</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">fftpack</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">H</span><span class="p">))</span>
+<span class="n">t_syn_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">H</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">fs_Hz</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">H</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Graphische Darstellung</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Impulsantwort des Synthesefilters für /u/ mit Ordnung=</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span><span class="k">N</span>)
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Zeit [s]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;h [t]&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_syn_s</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2.2 - LPC_solved_38_0.png" src="../_images/2.2 - LPC_solved_38_0.png" />
+</div>
+</div>
+<p>Erzeugen Sie nun ein Audiosignal, indem Sie die ersten 10 ms bzw. ~170 Samples (genauer [512:512+170]) mittels der “repeat_audio” abspielen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Audioausgabe</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Lösung</span>
+<span class="c1"># repeat_audio(np.real(h[len(h)//2:]))</span>
+<span class="c1"># repeat_audio(playable_audio_u)</span>
+<span class="c1"># play_audio(playable_audio)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;\nAudioausgabe\n&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Zum Schluss soll nun mittels <code class="docutils literal notranslate"><span class="pre">interact_manual</span></code> Änderungen in der Modellordnung  betrachtet werden:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Interaktive LPC-Darstellung</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Lösung</span>
+
+<span class="nd">@interact_manual</span><span class="p">(</span><span class="n">N_i</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>  <span class="n">segment_type_i</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;a-Segment&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;u-Segment&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)],</span> <span class="n">output_sound_i</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">output_type_i</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;real&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;real+win&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),(</span><span class="s1">&#39;real+win+overlap&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">),(</span><span class="s1">&#39;syn+uncut&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;syn+overlap&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)],</span> <span class="n">t_overlap_ms_i</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">interactive_linear_sweep</span><span class="p">(</span><span class="n">N_i</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">segment_type_i</span> <span class="o">=</span> <span class="s1">&#39;a-Segment&#39;</span><span class="p">,</span> <span class="n">output_sound_i</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">output_type_i</span> <span class="o">=</span> <span class="s1">&#39;win+added&#39;</span><span class="p">,</span> <span class="n">t_overlap_ms_i</span> <span class="o">=</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">segment_type_i</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">segment</span> <span class="o">=</span> <span class="n">a_segment</span>
+    <span class="k">elif</span> <span class="n">segment_type_i</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">segment</span> <span class="o">=</span> <span class="n">u_segment</span>
+    
+    <span class="c1"># LP-Koeffizienten </span>
+    <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">librosa</span><span class="o">.</span><span class="n">lpc</span><span class="p">(</span><span class="n">segment</span><span class="p">,</span> <span class="n">N_i</span><span class="p">)</span>            <span class="c1"># LP-Koeffizienten bestimmen</span>
+    <span class="n">fH_Hz</span><span class="p">,</span> <span class="n">H</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">fs_Hz</span><span class="p">)</span>    <span class="c1"># Amplitudenfrequenzgang</span>
+    <span class="n">z</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">tf2zpk</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>              <span class="c1"># Null-Pol Verteilung</span>
+    
+    <span class="c1"># Impulsantwort h des Modellfilters H</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">fftpack</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>
+    <span class="n">t_s</span> <span class="o">=</span> <span class="n">t_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">H</span><span class="p">)</span><span class="o">/</span><span class="n">fs_Hz</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">H</span><span class="p">))</span>
+    
+   
+    <span class="c1"># Audioauswahl</span>
+    <span class="k">if</span> <span class="n">output_type_i</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># real + uncut</span>
+        <span class="n">chosen_audio</span> <span class="o">=</span> <span class="n">repeat_audio</span><span class="p">(</span><span class="n">segment</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>          
+    <span class="k">elif</span> <span class="n">output_type_i</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span> <span class="c1"># real + windowed</span>
+        <span class="n">chosen_audio</span> <span class="o">=</span> <span class="n">repeat_audio</span><span class="p">(</span><span class="n">segment</span><span class="o">*</span><span class="n">signal</span><span class="o">.</span><span class="n">hann</span><span class="p">(</span><span class="n">segment</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">output_type_i</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span> <span class="c1"># real + windowed + overlap</span>
+        <span class="n">chosen_audio</span> <span class="o">=</span> <span class="n">overlap_audio</span><span class="p">(</span><span class="n">segment</span><span class="o">*</span><span class="n">signal</span><span class="o">.</span><span class="n">hann</span><span class="p">(</span><span class="n">segment</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">t_overlap_ms_i</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">output_type_i</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span> <span class="c1"># syn + uncut</span>
+        <span class="n">chosen_audio</span> <span class="o">=</span> <span class="n">repeat_audio</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">h</span><span class="p">),</span> <span class="kc">False</span><span class="p">)</span>        
+    <span class="k">elif</span> <span class="n">output_type_i</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span> <span class="c1"># syn + overlap</span>
+        <span class="n">chosen_audio</span> <span class="o">=</span> <span class="n">overlap_audio</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">h</span><span class="p">),</span> <span class="n">t_overlap_ms_i</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+
+    <span class="c1"># Graphische Darstellung</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Amplitudenfrequenzgang des Synthesefilters mit Ordnung=</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span><span class="k">N_i</span>)
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frequenz [Hz]&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$log|H(e^</span><span class="si">{jΩ}</span><span class="s1">)|$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fH_Hz</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">H</span><span class="p">)))</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Polverteilung des Synthesefilters mit Ordnung=</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span><span class="k">N_i</span>)
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Real&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Image&#39;</span><span class="p">)</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>  
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">223</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Impulsantwort des Synthesefilters mit Ordnung=</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span><span class="k">N_i</span>)
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Zeit [s]&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;h [t]&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_s</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">224</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Ausschnitt des Audiosignals&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Zeit [s]&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;x [t]&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_s</span><span class="p">,</span> <span class="n">chosen_audio</span><span class="p">[:</span><span class="mi">512</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="c1"># Audioausgabe</span>
+    <span class="k">if</span> <span class="n">output_sound_i</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">play_audio</span><span class="p">(</span><span class="n">chosen_audio</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "038da2f968b94f0484adbf6c40b8cfcd"}
+</script></div>
+</div>
+<p>Dies ist nur eine rudimentäre Umsetzung eines synthetisierten Vokaltrakts, für die es diverse Verbesserungsmethoden gibt. Außerdem fällt direkt auf, dass sich die Grundfrequenz des synthetisierten Vokals (bzw. der “Pitch”) ändert, wenn sich die Fensterlänge der überlappten Fenster ändert. Eine Alternative dazu bietet zum Beispiel der sog. PSOLA Algorithmus (“Pitch Synchronous Overlap Add”), mit dem das Audiosignal so manipuliert werden kann, dass die Aussprache schneller ist, aber die Grundfrequenz gleich bleibt. Für Interessierte wird auf diese Methoden in der Vorlesung “Sprachsynthese” im 9. Semester näher eingegangen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sa</span><span class="o">.</span><span class="n">stop_all</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="references">
+<h3>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Source%E2%80%93filter_model#/media/File:Source-filter_model_diagram.svg">Emflazie</a>, <a class="reference external" href="https://www.adaptivedigital.com/lpc/">adaptivedigital</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Linear_predictive_coding">Linear predictive coding</a></p></li>
+<li><p><a class="reference external" href="http://support.ircam.fr/docs/AudioSculpt/3.0/co/LPC.html">Introduction - Linear predictive coding</a></p></li>
+</ol>
+<hr class="docutils" />
+<div>Notebook erstellt von Arne-Lukas Fietkau, Yifei Li  und <a href="mailto:christoph.wagner@tu-dresden.de?Subject=Frage%20zu%20Jupyter%20Notebook%201.2%20IIR%20Filterentwurf" target="_top">Christoph Wagner</a></div></section>
+</section>
+</section>
+
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"2a8be2be3d114ed69a9306a644e8c689": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "038da2f968b94f0484adbf6c40b8cfcd": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": ["widget-interact"], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_37913dcd486f4ac993e0ededd370e605", "IPY_MODEL_a83a5b370a9640c5aea7ecc629479683", "IPY_MODEL_e8a2856bf1be46168240a93b6d370a23", "IPY_MODEL_8826df5fe1b04f5cb1b8545f41c55300", "IPY_MODEL_60f57b38a28343dcb0797d0c4bfceb56", "IPY_MODEL_3608fc19c9ac4fe989ba971e94c132e9", "IPY_MODEL_a12307a9d8d34ec6a32e709eb5068453"], "layout": "IPY_MODEL_2a8be2be3d114ed69a9306a644e8c689"}}, "2758c12032bb45c6b4dc7ab44cf3fff4": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "64dfaa33d551475e9f2c0163387404ba": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "37913dcd486f4ac993e0ededd370e605": {"model_name": "IntSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "IntSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "IntSliderView", "continuous_update": true, "description": "N_i", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_2758c12032bb45c6b4dc7ab44cf3fff4", "max": 50, "min": 2, "orientation": "horizontal", "readout": true, "readout_format": "d", "step": 2, "style": "IPY_MODEL_64dfaa33d551475e9f2c0163387404ba", "value": 10}}, "555c030d4ef346e9a77b650a80693533": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "ad466125e0cd47bead9cea5533f42e68": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "a83a5b370a9640c5aea7ecc629479683": {"model_name": "DropdownModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DropdownModel", "_options_labels": ["a-Segment", "u-Segment"], "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "DropdownView", "description": "segment_type_i", "description_tooltip": null, "disabled": false, "index": 0, "layout": "IPY_MODEL_555c030d4ef346e9a77b650a80693533", "style": "IPY_MODEL_ad466125e0cd47bead9cea5533f42e68"}}, "b5d16d90e27d4b828537719486450715": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "a4f78e89861b4f1083ceee524fa3f152": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "e8a2856bf1be46168240a93b6d370a23": {"model_name": "CheckboxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "CheckboxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "CheckboxView", "description": "output_sound_i", "description_tooltip": null, "disabled": false, "indent": true, "layout": "IPY_MODEL_b5d16d90e27d4b828537719486450715", "style": "IPY_MODEL_a4f78e89861b4f1083ceee524fa3f152", "value": true}}, "93c4f933e9f743f3894975517acfb0d7": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "e6071fb4eee748bd93625bae3dd133c5": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "8826df5fe1b04f5cb1b8545f41c55300": {"model_name": "DropdownModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DropdownModel", "_options_labels": ["real", "real+win", "real+win+overlap", "syn+uncut", "syn+overlap"], "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "DropdownView", "description": "output_type_i", "description_tooltip": null, "disabled": false, "index": 0, "layout": "IPY_MODEL_93c4f933e9f743f3894975517acfb0d7", "style": "IPY_MODEL_e6071fb4eee748bd93625bae3dd133c5"}}, "6bc1d409112e4db2853db99e9a17d116": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "e0c1a9d78f4041ada6afd52e78fdd287": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "60f57b38a28343dcb0797d0c4bfceb56": {"model_name": "IntSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "IntSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "IntSliderView", "continuous_update": true, "description": "t_overlap_ms_i", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_6bc1d409112e4db2853db99e9a17d116", "max": 15, "min": 1, "orientation": "horizontal", "readout": true, "readout_format": "d", "step": 1, "style": "IPY_MODEL_e0c1a9d78f4041ada6afd52e78fdd287", "value": 10}}, "be23d67fedd44dadb442a6216db19574": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "61227df128034ce48f3e51ffa49feac6": {"model_name": "ButtonStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ButtonStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "button_color": null, "font_weight": ""}}, "3608fc19c9ac4fe989ba971e94c132e9": {"model_name": "ButtonModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ButtonModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ButtonView", "button_style": "", "description": "Run Interact", "disabled": false, "icon": "", "layout": "IPY_MODEL_be23d67fedd44dadb442a6216db19574", "style": "IPY_MODEL_61227df128034ce48f3e51ffa49feac6", "tooltip": ""}}, "ca81d921205b4e55b9a41430cdbe51e6": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "a12307a9d8d34ec6a32e709eb5068453": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_ca81d921205b4e55b9a41430cdbe51e6", "msg_id": "", "outputs": []}}}, "version_major": 2, "version_minor": 0}
+</script>
+
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "Berni96/tud-sv",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Thema-2-Messung der Übertragungsfunktion"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="2.1%20-%20Sweep_solved.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">2.1 - Sweep</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../Thema-3-Analyse%20nichtstation%C3%A4rer%20Signale/3.1%20-%20STFT_solved.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">3.1 - Short Time Fourier Transformation</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By SHK<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

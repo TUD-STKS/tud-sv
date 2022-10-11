@@ -7,9 +7,9 @@ author: SHK
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
-  execute_notebooks: force
+  execute_notebooks: off
 # includes source to output
-  echo: true
+#  echo: true
 
 # Define the name of the latex output file for PDF builds
 latex:

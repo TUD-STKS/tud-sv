@@ -1,0 +1,792 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>0.1 - Installationsanleitung &#8212; SV-book</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="0.2 - Einführung" href="0.2%20-%20Einf%C3%BChrung_solved.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">SV-book</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    0.1 - Installationsanleitung
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Einführung in Python
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="0.2%20-%20Einf%C3%BChrung_solved.html">
+   0.2 - Einführung
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Thema-1-Filter
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Thema-1-Filter/1.1%20-%20FIR%20Filterentwurf_solved.html">
+   1.1 - FIR Filterentwurf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Thema-1-Filter/1.2%20-%20IIR%20Filterentwurf_solved.html">
+   1.2 - IIR-Filterentwurf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Thema-1-Filter/1.3%20-%20Anwendungsbeispiel_solved.html">
+   1.3 -  Anwendungsbeispiel
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Thema-2-Messung der Übertragungsfunktion
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Thema-2-Messung%20der%20%C3%9Cbertragungsfunktion/2.1%20-%20Sweep_solved.html">
+   2.1 - Sweep
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Thema-2-Messung%20der%20%C3%9Cbertragungsfunktion/2.2%20-%20LPC_solved.html">
+   2.2 - Linear Predictive Coding
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Thema-3-Analyse nichtstationärer Signale
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Thema-3-Analyse%20nichtstation%C3%A4rer%20Signale/3.1%20-%20STFT_solved.html">
+   3.1 - Short Time Fourier Transformation
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/Berni96/tud-sv/main?urlpath=tree/sv_book/Einführung in Python/0.1 - Installationsanleitung.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/Berni96/tud-sv"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/Berni96/tud-sv/issues/new?title=Issue%20on%20page%20%2FEinführung in Python/0.1 - Installationsanleitung.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/Einführung in Python/0.1 - Installationsanleitung.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inhalt">
+   Inhalt
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>0.1 - Installationsanleitung</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inhalt">
+   Inhalt
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="installationsanleitung">
+<h1>0.1 - Installationsanleitung<a class="headerlink" href="#installationsanleitung" title="Permalink to this headline">#</a></h1>
+<img style="float: right; margin:5px 0px 0px 10px" src="img/Titel.png" width="400">
+Begleitend zur Übung des Fachs Signalverarbeitung wird Ihnen eine Reihe an Jupyter-Notebooks zur Verfügung gestellt. Diese soll Ihnen sowohl beim Verständnis der in der Vorlesung und Übung behandelten Themen helfen, als auch die Fähigkeit zur selbstständigen Lösung eigener Problemstellungen geben.
+<p>Die Bearbeitung der Notebooks ist dabei komplett freiwillig. Falls Sie aber Probleme, Fragen und Anmerkungen haben, posten Sie diese gerne ins Opal-Forum oder senden Sie uns eine Mail.</p>
+<p>Dieses Notebook soll Ihnen beim Einstieg mit Python und der Installation von Modulen helfen. Weitere Notebooks werden zeitnah zur jeweiligen Übung online gestellt.</p>
+<section id="inhalt">
+<h2>Inhalt<a class="headerlink" href="#inhalt" title="Permalink to this headline">#</a></h2>
+<table style="width:256px; border: 1px solid black; display: inline-block">
+    <tr>
+    <td  style="text-align:right" width=64px><img src="img/IMG-binder.svg" style="float:left"></td>
+      <td style="text-align:left" width=256px>
+          <a style="color:black; font-size:14px; font-weight:bold; text-decoration:none" href='#binder'>1. Binder</a>
+      </td>
+  </tr>  
+    <tr>
+    <td  style="text-align:right" width=64px><img src="img/IMG-Python.png" style="float:left"></td>
+      <td style="text-align:left" width=256px>
+          <a style="color:black; font-size:14px; font-weight:bold; text-decoration:none" href='#python'>2. Python</a>
+      </td>
+  </tr>  
+  <tr>
+    <td style="text-align:right"><img src="img/IMG-jupyter.png" style="float:left"></td>
+    <td style="text-align:left" width=128px><a style="color:black; font-size:14px; font-weight:bold; text-decoration:none" href='#jupyter'>3. Jupyter Notebooks</a>
+      </td>
+  </tr>
+</table><p><a id='binder'></a><div><a class="reference internal" href="../_images/IMG-binder.svg"><img alt="../_images/IMG-binder.svg" src="../_images/IMG-binder.svg" width="24px" /></a><h2 style="position: relative; top: 6px; left: 6px">  1. Binder </h2></div></p>
+<p>Sie schauen sich dieses Notebook sicherlich zuerst über den Service <a class="reference external" href="https://mybinder.org/"><code class="docutils literal notranslate"><span class="pre">Binder</span></code></a> an. Dieses Tool erlaubt es, auf Github hochgestellte Jupyter-Notebooks -wie zum Beispiel dieses- über einen externen Server auszuführen. Das gibt einem die Möglichkeit, sich Projekte ohne Download der Daten und ohne lokal installiertes Python anzuschauen. Gestartete Sessions werden aber nach ungefähr 10 Minuten Inaktivität vom Server geschlossen und alle Änderungen gehen damit verloren. <a class="reference external" href="https://mybinder.readthedocs.io/en/latest/about/about.html">Hier gibt es weitere Informationen dazu.</a></p>
+<p>Falls Sie also die von Ihnen bearbeiteten Notebooks gerne wiederverwenden möchten, ist eine Installation von Python notwendig. Eine Anleitung zur Installation unter Windows gibt es in den folgenden Kapiteln.</p>
+<hr class="docutils" />
+<p><a id='python'></a><div><img alt="../_images/IMG-Python.png" src="../_images/IMG-Python.png" /><h2 style="position: relative; top: 6px; left: 6px">  2. Python </h2></div></p>
+<h4> Allgemeines</h4>
+<p>Python ist eine Skriptsprache auf hoher Ebene, die Interpretation, Kompilierung, Interaktivität und Objektorientiertheit kombiniert. Python ist leicht zu erlernen, einfach zu lesen, und hat eine breite Palette von Standardbibliotheken. Einer der größten Vorteile von Python ist seine umfangreiche Bibliothek, die plattformübergreifend und mit UNIX, Windows und Macintosh kompatibel ist. Es gibt viele Tutorials über Python wie zum Beispiel auf <a class="reference external" href="https://www.w3schools.com/python/">w3schools</a>.</p>
+<p>Falls Sie Python auf Ihren Rechner installieren wollen, gibt es im Folgenden eine Anleitung für Windows-Nutzer*innen, da die Installation und Nutzung von Python zum Teil sehr Kommandozeilen-intensiv sind.</p>
+<p><em>Hinweis:</em> Es gibt zudem auch die Software <code class="docutils literal notranslate"><span class="pre">Anaconda</span></code>, die die Nutzung von Python und Jupyter-Notebooks vereinfacht. Bei Anaconda sind viele weitere externe Module schon vorinstalliert. Wir wollen Ihnen aber im Folgenden eine Anleitung geben, wie sie mit dem normalen Python umgehen. Falls Sie also Probleme bei der direkten Installation von Python haben, können Sie als Option auf die <a class="reference external" href="https://www.anaconda.com/products/individual">Anaconda-Software zurückgreifen.</a> Sie können sich aber zuerst auch gerne an uns wenden.</p>
+<br>
+<h4>Installations- und Nutzungsanleitung von Python</h4>
+<p>Nun wird Ihnen Schritt für Schritt erklärt, wie Sie Python installieren können. Zuerst sollten Sie auf Ihren PC nachschauen, ob Sie schon eine Pythonversion installiert haben.</p>
+<ol class="simple">
+<li><p><strong>Kontrolle auf installierte Python-Versionen</strong> <br>
+Öffnen Sie eine Eingabeaufforderung (cmd) und geben Sie den Befehl <code class="docutils literal notranslate"><span class="pre">py</span> <span class="pre">-0p</span></code> ein. Mit diesem Kommando wird -wenn verfügbar- der Python Launcher <code class="docutils literal notranslate"><span class="pre">py</span></code> ausgeführt, der nach ausführbaren Pythoninstallationen (sogenannten executables) sucht und diese nach ihren Versionen auflistet. Wenn dieser Befehl nicht gefunden wurde, haben Sie mit hoher Wahrscheinlichkeit kein Python installiert. Falls doch, schauen Sie über den angezeigten Pfad nach, ob es sich um ein von einem anderen Programm intern installiertes Python handelt. Falls dies der Fall ist, sollten Sie es lieber nicht verändern und ein neues Python installieren. Wenn Sie ein veraltetes Python installiert haben, können Sie die Zeit jetzt nutzen und eine neue Version installieren und Ihre alte Version entweder löschen oder behalten. Sie können nämlich unterschiedliche Python-Versionen nebeneinander installiert haben</p></li>
+<li><p><strong>Installation von Python:</strong> <br>
+Die neuesten Versionen von Python <a class="reference external" href="https://www.python.org/downloads/">finden Sie hier</a>. Wählen Sie bei der Installation auch die Option “Add Python 3.X to PATH” aus! Diese Funktion fügt den Speicherort von “python.exe” (..\Python3X) und den der externen Module (..\Python3X\Scripts) in die Umgebungsvariable “PATH”, damit bei Funktionsaufrufen über die Eingabeaufforderung auch diese Ordner durchsucht werden. <br>
+<em>Hinweis:</em> Bei der Erstellung dieses Notebooks ist die Version 3.9.0 kürzlich veröffentlicht worden. Deshalb waren einige externe Module bis zur Fertigstellung des Notebooks immer noch nicht aktualisiert worden und konnten nicht über den normalen Weg für Python 3.9 installiert werden. Probieren Sie es aber zuerst aus, die neueste Python-Version zu installieren. Falls Sie jetzt immer noch Probleme haben sollten, lassen Sie Python 3.9 einfach installiert und laden sich die Version 3.8 herunter, womit Sie zunächst arbeiten können. Die Probleme mit den inkompatiblen Modulen für Python 3.9 sollten nur eine Frage der Zeit sein, bis diese behoben sind. Zudem ist das zweimalige Installieren von Python eine gute Übung! ;)</p></li>
+<li><p><strong>Starten von Python:</strong><br>
+Python können Sie über die Eingabeaufforderung von Windows starten. Zum Öffnen der Eingabeaufforderung drücken Sie dafür zum Beispiel <code class="docutils literal notranslate"><span class="pre">Windows-Taste</span></code> + <code class="docutils literal notranslate"><span class="pre">R</span></code>, geben Sie “<em>cmd</em>” ein und drücken <code class="docutils literal notranslate"><span class="pre">Enter</span></code>.
+In der sich nun geöffneten Kommando-Shell können Sie Python über zwei unterschiedlichen Kommandos starten:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Bei dem Befehl <code class="docutils literal notranslate"><span class="pre">python</span></code> sucht die Shell alle im “PATH”-Verzeichnis eingetragenen Ordner nach einer executable (.exe) mit dem Namen python (also python.exe). Dabei werden die Verzeichnisse systematisch von oben nach unten durchgegangen und beim ersten Treffer hört die Suche auf und die .exe wird ausgeführt. Falls Sie nur eine Version installiert haben, sind Sie damit vollkommen zufrieden. Falls Sie aber mehrere Python-Versionen installiert haben, würde dies bedeuten, dass Sie immer die Verzeichnisse (..\Python3X) und (..\Python3X\Scripts) der gewünschten Python-Version nach oben schieben müssen.</p></li>
+<li><p>Mit dem Befehl <a class="reference external" href="https://www.python.org/dev/peps/pep-0397/"><code class="docutils literal notranslate"><span class="pre">py</span></code></a> wird der “Python Launcher” aufgerufen, der bei der Installation von Python in das Verzeichnis C:\Windows\ installiert wird. Wenn dieser ohne weitere Bedingungen von Ihnen gestartet wird, läuft der Befehl ab wie der Befehl <code class="docutils literal notranslate"><span class="pre">python</span></code>. Mit dem “Python Launcher” kann aber bestimmt werden, welche Python-Version gestartet werden soll. Um zum Beispiel Python mit Version 3.8 zu starten, hängt man einfach ein <code class="docutils literal notranslate"><span class="pre">-3.8</span></code>an. Also als komplettes Kommando: <code class="docutils literal notranslate"><span class="pre">py</span> <span class="pre">-3.8</span></code>. (Wenn Sie mehr Interesse an einzelnen Funktionen haben, können Sie immer ein <code class="docutils literal notranslate"><span class="pre">-h</span></code> hinter jede Funktion schreiben. Z.B.: <code class="docutils literal notranslate"><span class="pre">py</span> <span class="pre">-h</span></code> oder <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-h</span></code>.)</p></li>
+</ul>
+<p>Ein Python-Kernel startet und Ihnen sollte die Versionsnummer von dem von Ihnen installierten Python angezeigt werden. Falls dies nicht der Fall ist, müssen Sie gegebenenfalls den “PATH” in den Umgebungsvariablen editieren. Eine Anleitung dazu <a class="reference external" href="https://datatofish.com/add-python-to-windows-path/">finden Sie hier.</a></p>
+<p>Sie können jetzt Python verwenden, indem Sie Ihren Code zeilenweise in die Eingabeaufforderung eingeben. Probieren Sie zum Beispiel folgenden Code aus:</p>
+<div style="background-color:rgba(0, 0, 0, 0.0470588); padding:10px 10px;font-family:monospace;">
+<p>2 + 3 <em>[Enter]</em></p>
+<p>a = 6 <em>[Enter]</em></p>
+<p>b = 12 <em>[Enter]</em></p>
+<p>c = a + b <em>[Enter]</em></p>
+<p>c <em>[Enter]</em>                              #Kommentar: Ausgabe von c</p>
+<p>A = [[1,2,3], [4,5,6]] <em>[Enter]</em>         #Kommentar: Erstellen einer 2x3-Matrix</p>
+<p>A <em>[Enter]</em>                              #Kommentar: Ausgabe von A, equivalent zu print(A)</p>
+</div>
+<p>Zum Schließen des Kernels können Sie entweder “<em>exit()</em>” oder  <code class="docutils literal notranslate"><span class="pre">Strg</span></code> + <code class="docutils literal notranslate"><span class="pre">Z</span></code> eingeben und mit <code class="docutils literal notranslate"><span class="pre">Enter</span></code> bestätigen.</p>
+<br>
+<h4> Nutzung von Modulen </h4>
+<p>Es gibt built-in und externe Module (auch Packages oder Libraries genannt, hier aber ein <a class="reference external" href="https://docs.python.org/3/tutorial/modules.html">Link über die genaue Wortdefinition</a>).</p>
+<p>Built-in Module können direkt verwendet werden und stellen die Basis zur Programmierung in Python dar. Zum Beispiel gibt es das Modul <code class="docutils literal notranslate"><span class="pre">cmath</span></code> für <a class="reference external" href="https://docs.python.org/3/library/cmath.html#module-cmath">komplexe Zahlen</a>. Daraus können Sie das Objekt <code class="docutils literal notranslate"><span class="pre">complex()</span></code> direkt nutzen, um eine komplexe Zahl zu erzeugen. Testen Sie den folgenden Code hier in der ausführbaren Zelle aus oder in Ihrer Eingabeaufforderung:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Starten Sie den Code, indem sie die Zelle auswählen und den Run-Button drücken </span>
+<span class="c1"># oder mit Shift + Enter</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="mf">1.4</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># Caste die Variable c als komplexe Zahl mit dem Wert 1.4 -3j</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>              <span class="c1"># Ausgabe des Inhalts von c</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.4-3j)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Die graphische Darstellung des Werts in einem Plot ist mit den internen Modulen aber zum Beispiel nicht mehr möglich. Dafür muss man sich mit einem externen Modul behelfen, zum Beispiel <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>. Diese externen Module müssen in Python installiert werden und für jedes Projekt importiert werden. Im Folgenden sind zwei Code-Zellen als Beispiel für installierte und nicht installierte Pakete im <code class="docutils literal notranslate"><span class="pre">Binder</span></code>-Projekt dargestellt.<br>
+Zuerst ein installiertes Modul zur Erzeugung von Plots:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Starten Sie den Code, indem sie die Zelle auswählen und den Run-Button drücken</span>
+<span class="c1"># oder mit Shift + Enter</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">real</span><span class="p">,</span><span class="n">c</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>   <span class="c1"># Ausgabe eines Punkts</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>                          <span class="c1"># Plot zeigen</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0.1 - Installationsanleitung_6_0.png" src="../_images/0.1 - Installationsanleitung_6_0.png" />
+</div>
+</div>
+<p><em>Hinweis:</em> Falls Sie <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> schon lokal installiert haben und diesen über die Eingabeaufforderung nutzen, werden die Kommandos ausgeführt, nur wegen fehlender Ausgabemöglichkeit seitens der Eingabeaufforderung kann Ihnen der Plot nicht angezeigt werden.</p>
+<p>Als Beispiel für einen nicht ausführbaren Code in dem <code class="docutils literal notranslate"><span class="pre">Binder</span></code>-Projekt ist die folgende Zelle mit dem Modul <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, das nicht mitinstalliert wurde (und im Weiteren auch nicht benötigt wird).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Starten Sie den Code, indem sie die Zelle auswählen und den Run-Button drücken</span>
+<span class="c1"># oder mit Shift + Enter</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+<span class="c1"># Es sollte ein ModuleNotFoundError entstehen.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Starten Sie den Code, indem sie die Zelle auswählen und den Run-Button drücken</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="c1"># oder mit Shift + Enter</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+
+<span class="ne">NameError</span>: name &#39;np&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>Für das Einbinden von externen Modulen gibt <a class="reference external" href="https://docs.python.org/3/tutorial/modules.html#more-on-modules">es folgende Kommandos</a>:</p>
+<p><em>A) Import der kompletten Bibliothek</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Der Befehl importiert die gesamte Bibliothek des Moduls mit dem eigenem Namensraum <code class="docutils literal notranslate"><span class="pre">numpy</span></code>. Das Modul numpy besitzt zum Beispiel die Objekte <code class="docutils literal notranslate"><span class="pre">cos()</span></code>, <code class="docutils literal notranslate"><span class="pre">sin()</span></code> oder <code class="docutils literal notranslate"><span class="pre">pi</span></code>. Durch den obigen Import lassen sich die Objekte aufrufen, indem man zuerst das Modul nennt: <code class="docutils literal notranslate"><span class="pre">numpy.cos()</span></code>, <code class="docutils literal notranslate"><span class="pre">numpy.sin()</span></code> oder <code class="docutils literal notranslate"><span class="pre">numpy.pi</span></code>.</p></li>
+</ul>
+<p><em>B) Import der kompletten Bibliothek mit alias</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Wie bei A) importiert der Befehl die gesamte Bibliothek des Moduls, nur heißt der Namensraum nun <code class="docutils literal notranslate"><span class="pre">np</span></code>. Die Objekte <code class="docutils literal notranslate"><span class="pre">cos()</span></code>, <code class="docutils literal notranslate"><span class="pre">sin()</span></code> oder <code class="docutils literal notranslate"><span class="pre">pi</span></code> lassen sich nun folgendermaßen aufrufen: <code class="docutils literal notranslate"><span class="pre">np.cos()</span></code>, <code class="docutils literal notranslate"><span class="pre">np.sin()</span></code> oder <code class="docutils literal notranslate"><span class="pre">np.pi</span></code>.</p></li>
+</ul>
+<p><em>C) Import einzelner Module aus der Bibliothek</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">cos</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">pi</span>
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Mit diesem Befehl werden die einzelnen Objekte <code class="docutils literal notranslate"><span class="pre">cos()</span></code>, <code class="docutils literal notranslate"><span class="pre">sin()</span></code> und <code class="docutils literal notranslate"><span class="pre">pi</span></code> in den globalen Namensraum importiert. Diese können nun direkt aufgerufen werden, also mittels: <code class="docutils literal notranslate"><span class="pre">cos()</span></code>, <code class="docutils literal notranslate"><span class="pre">sin()</span></code> oder <code class="docutils literal notranslate"><span class="pre">pi</span></code>. Passen Sie dabei auf, dass der Name nicht schon belegt ist und es zur Kollision von gleichnamigen Objekten gibt, die dann nicht mehr aufrufbar sind.</p></li>
+</ul>
+<p><em>D) Import aller Module aus der Bibliothek</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="o">*</span>
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Der Befehl bindet alle Objekte und Module von <code class="docutils literal notranslate"><span class="pre">numpy</span></code> direkt in den globalen Namensraum ein. Nun können alle Module direkt aufgerufen werden, also mittels: <code class="docutils literal notranslate"><span class="pre">cos()</span></code>, <code class="docutils literal notranslate"><span class="pre">sin()</span></code> oder <code class="docutils literal notranslate"><span class="pre">pi</span></code>. Dieser Import ist <strong>nicht empfehlenswert</strong>, da so die große Gefahr der Namenskollision besteht, und sollte daher nicht genutzt werden.</p></li>
+</ul>
+<p><em>E) Import einzelner Module aus der Bibliothek mit Alias</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy.cos</span> <span class="k">as</span> <span class="nn">cosin</span>
+<span class="n">oder</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">cos</span> <span class="k">as</span> <span class="n">cosin</span>
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Bei dieser Art des Imports wird nur jeweils das aufgerufene Modul der Bibliothek mit dem vorgegebenen Alias eingebunden.</p></li>
+</ul>
+<br>
+<p>Durch das Importieren von externen Modulen kann man also die Funktionalität von Python erweitern. Jedes externe Modul sollte aber nur dann in das Projekt eingebunden werden, wenn dieses auch wirklich verwendet wird. Externe Module können dabei auch in anderen Programmiersprachen geschrieben sein. <code class="docutils literal notranslate"><span class="pre">numpy</span></code> zum Beispiel ist vorwiegend in <em>C</em> geschrieben.</p>
+<p>Die in dem folgenden Einführungs-Notebook (0.2) verwendeten Module und deren Funktionen sind:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://numpy.org"><code class="docutils literal notranslate"><span class="pre">numpy</span></code></a>: für <a class="reference external" href="https://www.python-kurs.eu/numpy.php">Arrays und Matrizen</a>,</p></li>
+<li><p><a class="reference external" href="https://matplotlib.org/contents.html"><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></a>: Erstellung von mathematischen Darstellungen,</p></li>
+<li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/"><code class="docutils literal notranslate"><span class="pre">scipy</span></code></a>: Nutzung wissenschaftlicher Funktionen.</p></li>
+</ul>
+<br>
+<h5>Installation von externen Modulen</h5>
+<p>Für die Installation von externen Modulen steht das Paketverwaltungsprogramm <a class="reference external" href="https://pip.pypa.io/en/stable/"><code class="docutils literal notranslate"><span class="pre">pip</span></code></a> zur Verfügung. Es lädt die Module aus dem <a class="reference external" href="https://pypi.org/"><em>Python Package Index (PyPI)</em></a> herunter, in dem die wichtigsten Projekte gelistet sind, und installiert diese. <code class="docutils literal notranslate"><span class="pre">pip</span></code> kümmert sich auch darum, bei Abhängigkeiten zu fehlenden Modulen diese automatisch mit zu installieren. Das Paketverwaltungsprogramm nutzt man direkt über die Eingabeaufforderung von Windows. Dabei ist zu beachten, dass Python nicht in derselben Eingabeaufforderung gestartet ist. Alle laufenden Python-Ausführungen können in anderen Eingabeaufforderungen weiterlaufen.</p>
+<p><em>Hinweis:</em> Falls Sie wegen mehreren installierten Python-Version auf den Python-Launcher zurückgreifen, müssen Sie bei allen im Folgenden beschriebenen Befehlen das <code class="docutils literal notranslate"><span class="pre">python</span></code> mit <code class="docutils literal notranslate"><span class="pre">py</span> <span class="pre">-3.X</span></code> ersetzen.</p>
+<p>Mit <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">-V</span></code> können Sie sich den Speicherort der pip-Version ausgeben lassen. Kontrollieren Sie, dass der richtige Pfad angezeigt wird, indem Sie die Python-Version installiert haben. Falls dies nicht der Fall ist, müssen Sie die Umgebungsvariablen editieren oder auf den Python Launcher <code class="docutils literal notranslate"><span class="pre">py</span></code> zurückgreifen (siehe dafür vorheriges Unterkapitel: Installation von Python).</p>
+<p>Über den Befehl <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">list</span></code> oder in einem Pythonkernel über <code class="docutils literal notranslate"><span class="pre">help(&quot;modules&quot;)</span></code> kann man sich eine Liste der installierten Module ausgeben lassen.</p>
+<p>Bevor Sie Module installieren, sollte pip geupdated werden. Dies kann mit folgendem Befehl getan werden. <br></p>
+<div style="background-color:rgba(0, 0, 0, 0.0470588); padding:10px 10px;font-family:monospace;">
+python -m pip install --upgrade pip
+</div>
+<p>Zudem ist es sinnvoll, daraufhin das Modul <a class="reference external" href="https://pypi.org/project/wheel/"><code class="docutils literal notranslate"><span class="pre">wheel</span></code></a> zu installieren. Mit diesem Modul kann <code class="docutils literal notranslate"><span class="pre">pip</span></code> vorgepackte und -kompilierte Packages von PyPi herunterladen, was den Download und die Installation beschleunigt (siehe <a class="reference external" href="https://realpython.com/python-wheels/">Link für mehr Erklärung</a>). Installiert wird <code class="docutils literal notranslate"><span class="pre">wheel</span></code> über  folgenden Befehl:<br></p>
+<div style="background-color:rgba(0, 0, 0, 0.0470588); padding:10px 10px;font-family:monospace;">
+python -m pip install wheel
+</div>
+<ol class="simple">
+<li><p><strong>Installation von Numpy:</strong> <br>
+Da <a class="reference external" href="https://numpy.org/doc/stable/user/whatisnumpy.html"><code class="docutils literal notranslate"><span class="pre">numpy</span></code></a> primär in <em>C</em> geschrieben ist, werden Libraries und Interpreter auf dem PC benötigt, um numpy zu installieren. Probieren Sie aber zuerst, die Installation mit folgendem Code zu starten.
+<br>
+Öffnen Sie eine eine Eingabeaufforderung und geben Sie folgenden Code ein und drücken <code class="docutils literal notranslate"><span class="pre">Enter</span></code>:<br></p></li>
+</ol>
+<div style="background-color:rgba(0, 0, 0, 0.0470588); padding:10px 10px;font-family:monospace;">
+python -m pip install numpy
+</div>
+<p>Falls dies mit einem Fehler abbricht, liegt das wahrscheinlich daran, dass Sie die C-Libraries installieren müssen. Diese können Sie mit <a class="reference external" href="https://visualstudio.microsoft.com/de/visual-cpp-build-tools/">C++-Buildtools</a> installieren. Wählen Sie nach Starten des Installationsassistenten im Installationsmenü <em>C++-Buildtools</em> aus. Hinweis: entfernen Sie keine Häkchen bei den vorausgewählten optionalen Modulen. Und ja, leider sind das um die 5 Gigabyte an Speicherplatz..<br>
+Danach geben Sie nochmal den obigen Code ein, um die Installation ein weiteres Mal zu starten.</p>
+<ol class="simple">
+<li><p><strong>Installation von matplotlib:</strong> <br>
+Wenn <code class="docutils literal notranslate"><span class="pre">numpy</span></code> und <code class="docutils literal notranslate"><span class="pre">wheel</span></code> installiert sind, kann die Installation von <a class="reference external" href="https://matplotlib.org/users/installing.html"><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></a> über folgenden Befehl gestartet werden:<br></p></li>
+</ol>
+<div style="background-color:rgba(0, 0, 0, 0.0470588); padding:10px 10px;font-family:monospace;">
+python -m pip install matplotlib
+</div>
+<p>Wenn Sie sich nun die Liste der installierten externen Module anschauen (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">list</span></code>), wird Ihnen auffallen, dass durch die Installation von <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> noch weitere Module mit installiert wurden. Die sind automatisch mitinstalliert worden, da <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> sich auf diese bezieht.</p>
+<ol class="simple">
+<li><p><strong>Installation von scipy:</strong> <br>
+<code class="docutils literal notranslate"><span class="pre">Scipy</span></code> auf einem Windows-Betriebssystem über den regulären Weg zu installieren <a class="reference external" href="https://scipy.org/install.html">ist sehr aufwendig</a>. Um diesen Aufwand zu umgehen, wird über den Dienst <code class="docutils literal notranslate"><span class="pre">wheel</span></code> eine vorgepackte Version heruntergeladen und installiert. Dies wird über folgenden Befehl gestartet:</p></li>
+</ol>
+<div style="background-color:rgba(0, 0, 0, 0.0470588); padding:10px 10px;font-family:monospace;">
+python -m pip install scipy
+</div>
+<p>Falls dies mit Fehlern endet, kann dies an folgenden Problemen liegen:
+- das Package <a class="reference external" href="https://pypi.org/project/mkl/"><code class="docutils literal notranslate"><span class="pre">mkl</span></code></a> muss vorinstalliert werden.<br></p>
+<div style="background-color:rgba(0, 0, 0, 0.0470588); padding:10px 10px;font-family:monospace;">
+python -m pip install mkl
+</div><br>
+Starten Sie danach nochmal die Installation von `scipy`.
+    - Falls Sie die Pythonversion 3.9 installiert haben, kann das Wheel gegebenenfalls noch nicht zur Verfügung stehen. Dafür stehen Ihnen zwei Möglichkeiten zur Verfügung. Zum einen können Sie die Python-Version 3.8. installieren und darüber nochmal alle externen Module installieren, was wir Ihnen empfehlen.<br>
+    Zum anderen gibt es die Möglichkeit, sich kompilierte Binary-Dateien von anderen Anbietern zu downloaden und installieren. Eine Webseite mit solchen Binary-Dateien ist über [diesen Link zu finden](https://www.lfd.uci.edu/~gohlke/pythonlibs/). Um nun `scipy` darüber zu installieren, müssen Sie zunächst `numpy` und `mkl` deinstallieren und ein vorgepacktes .whl für `numpy + mkl` und eines für `scipy` herunterladen. Dazu müssen Sie aus den Listen die korrekten binary-Files aussuchen. [Hier die Liste für scipy mit einem Link zu numpy + mkl](https://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy). Die Deinstallation der schon installierten Module und die Installation der lokalen `.whl` -Dateien folgt  über folgende Kommandos. Dabei müssen Sie den Pfad und den Dateinamen noch anpassen.<br>
+<div style="background-color:rgba(0, 0, 0, 0.0470588); padding:10px 10px;font-family:monospace;">
+python -m pip uninstall numpy<br>
+python -m pip uninstall mkl<br>
+python -m pip install C:\Users\~User\Downloads\numpy-1.19.2+mkl-cp3X-cp3X-win_amd64.whl<br>
+python -m pip install C:\Users\~User\Downloads\scipy-1.5.X-cp3X-cp3X-win_amdXX.whl
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  Diese Möglichkeit sollte aber immer nur als &quot;letzte Option&quot; gesehen werden, da es experimentelle binarys sind, und wird Ihnen in diesem Fall auch abgeraten. Falls Sie also (noch) nicht normal `scipy` installieren können, dann nutzen Sie lieber Python v3.8. Lassen Sie Python 3.9 aber einfach installiert und probieren Sie die Installation einfach ein paar Tage später aus. Vielleicht ist bis dahin ja ein wheel erstellt worden.
+</pre></div>
+</div>
+<p>Eine Installation von mehreren Packages kann man auch mit nur einem <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code>-Kommando durchführt, indem man die externen Pakete nacheinander schreibt. Zum Beispiel über: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">wheel</span> <span class="pre">numpy</span> <span class="pre">matplotlib</span> <span class="pre">scipy</span></code>.</p>
+<p>Nun sollten alle externen Module - bis auf Jupyter Notebook - auf Ihrem Computer installiert sein, die sie für das Einführungs-Notebook (0.2) benötigen. Falls Sie weitere Informationen benötigen, welche Möglichkeiten Ihnen bei der Installation und Update mit pip zur Verfügung stehen, können Sie sich noch folgende Links anschauen <a class="reference external" href="https://packaging.python.org/tutorials/installing-packages/">(1)</a> <a class="reference external" href="https://pip-python3.readthedocs.io/en/latest/reference/pip_install.html#pip-install-examples">(2)</a> <a class="reference external" href="https://pip.pypa.io/en/latest/user_guide/#installing-from-wheels">(3)</a>.</p>
+<hr class="docutils" />
+<p><a id='jupyter'></a><div><img alt="../_images/IMG-jupyter.png" src="../_images/IMG-jupyter.png" /><h2 style="position: relative; top: 6px; left: 6px">3. Jupyter Notebook </h2></div></p>
+<p><code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">Notebook</span></code> ist eine interaktive Computerumgebung, mit der Benutzer Notizbuchdokumente erstellen können, die Folgendes umfassen: - Live-Code - Interaktive Widgets - Diagramme - Erzähltext - Gleichungen - Bilder - Video usw.<br />
+Über die Kernel- und Messaging-Architektur von Jupyter ermöglicht das Notebook die Ausführung von Code in verschiedenen Programmiersprachen. Für jedes Notizbuchdokument (auch Notebook), das ein Benutzer öffnet, startet die Webanwendung einen Kernel, der den Code für dieses Notizbuch ausführt. Hier benutzen wir Python3 als Kernel.</p>
+<p>Folgende Informationen zum Umgang sind wichtig zu wissen:</p>
+<ul class="simple">
+<li><p>Der Aufbau ist in Zellen. Dabei kann eine Zelle zum Beispiel Pythoncode (<code class="docutils literal notranslate"><span class="pre">Code</span></code>) oder Text/Bilder (<code class="docutils literal notranslate"><span class="pre">Markdown</span></code>) beinhalten.</p></li>
+<li><p>Zellen mit Code können ausgeführt werden, indem man auf den Run-button klickt oder auf <code class="docutils literal notranslate"><span class="pre">Umschalt</span></code> + <code class="docutils literal notranslate"><span class="pre">Enter</span></code>.</p></li>
+<li><p>Auch Zellen mit Text können (wenn sie im Bearbeitungsmodus sind) mittels Run-Button oder <code class="docutils literal notranslate"><span class="pre">Umschalt</span></code> + <code class="docutils literal notranslate"><span class="pre">Enter</span></code> ausgeführt werden.</p></li>
+<li><p>Die Ergebnisse aller ausgeführten Zellen bleiben dabei gespeichert und können in der nächsten Zelle wieder verwendet werden.</p></li>
+<li><p>Löschen der kompletten Ausgabe geht über das Menüband unter <code class="docutils literal notranslate"><span class="pre">Kernel</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Restart</span> <span class="pre">&amp;</span> <span class="pre">Clear</span> <span class="pre">All</span> <span class="pre">Output</span></code>.</p></li>
+</ul>
+<p>Weitere Hinweise zu dessen Verwendung finden Sie <a class="reference external" href="https://jupyter.org/index.html">hier</a>.</p>
+<br>
+<h5>Installation von Jupyter Notebook</h5>
+<p>Zur Installation von <a class="reference external" href="https://pypi.org/project/jupyter/"><code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">Notebook</span></code></a> wird wieder <code class="docutils literal notranslate"><span class="pre">pip</span></code>verwendet. Nutzen Sie dafür folgendes Kommando:<br></p>
+<div style="background-color:rgba(0, 0, 0, 0.0470588); padding:10px 10px;font-family:monospace;">
+python -m pip install jupyter<br>
+   -- beziehungsweise --<br>
+py -3.X -m pip install jupyter
+</div><br>
+<p>Starten können sie <code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">Notebook</span></code> genau wie <code class="docutils literal notranslate"><span class="pre">python</span></code> oder <code class="docutils literal notranslate"><span class="pre">pip</span></code> über die Eingabeaufforderung von Windows mittels folgendem Kommando:<br></p>
+<div style="background-color:rgba(0, 0, 0, 0.0470588); padding:10px 10px;font-family:monospace;">
+jupyter notebook
+</div>
+<p>Daraufhin startet in der Eingabeaufforderung <code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">Notebook</span></code> und Ihr Standardbrowser öffnet sich mit dem Notebook-Fenster. Sie können das Programm auch mit einem anderen Browser verwenden, indem Sie den in der Eingabeaufforderung mit ausgegebenen http:-Link nutzen.
+Wenn Sie nun im Browser ein oder mehrere Notebooks (<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>) öffnen, wird in der Eingabeaufforderung für jedes Notebook ein neuer Python-Kernel gestartet.</p>
+<br>
+<h5>Hilfe bei mehreren Python-Versionen</h5>
+<p>Wenn Sie mehrere Python-Versionen installiert haben, können auch mehrere Python-Versionen den Kernel für die Notebooks stellen. Das Problem daran ist, dass der Kernel immer gleichnamig mit <code class="docutils literal notranslate"><span class="pre">python3</span></code> betitelt wird. Das sorgt dafür, dass es keine wirkliche Kontrolle gibt, welche Version gerade für den Kernel genutzt wird. Es wird in dieser Konfiguration meistens die Python-Version genommen, die im “PATH” zuerst kommt. Um eine Kontrolle über die Python-Kernel-Version einzurichten, können Sie folgende Befehle verwenden.</p>
+<p>Zeigen Sie sich alle Kernelspezifikationen an über:</p>
+<div style="background-color:rgba(0, 0, 0, 0.0470588); padding:10px 10px;font-family:monospace;">
+jupyter kernelspec list
+</div>
+Diese Liste muss dabei nicht stimmen, da Namensdopplungen nicht angezeigt werden!
+<p>Installieren Sie weitere Kernelspezifikationen mit anderem Namen über folgenden Befehl (hier für Python 3.8):</p>
+<div style="background-color:rgba(0, 0, 0, 0.0470588); padding:10px 10px;font-family:monospace;">
+py -3.8 -m ipykernel install --name python_3.8 --display-name "Python 3.8"
+</div>
+Wiederholen Sie das für alle Python-Versionen, die mit Jupyter Notebook verwendet werden sollen.
+<p>Sie können die nun redundant gewordene Spezifikation <code class="docutils literal notranslate"><span class="pre">python3</span></code> über folgenden Befehl löschen:</p>
+<div style="background-color:rgba(0, 0, 0, 0.0470588); padding:10px 10px;font-family:monospace;">
+jupyter kernelspec uninstall python3
+</div>
+<p>Wenn Sie dann ein Notebook geöffnet haben, können Sie über das Menüband unter <code class="docutils literal notranslate"><span class="pre">Kernel</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Change</span> <span class="pre">Kernel</span></code> die Python-Version auswählen, mit die der Kernel laufen soll. Auch können Sie bei einer Erstellung eines neuen Noteboks direkt auswählen, mit welchem Kernel dieser bei der Erstellung gestartet wird. Für die weitere Nutzung ist diese Auswahl aber irrelevant, da der Python-Code zwischen den Versionen zum großen Teil kompatibel ist.</p>
+<hr class="docutils" />
+<p>Falls Sie jetzt erfolgreich Python mit den externen Packages installieren konnten und Jupyter Notebook lokal nutzen können, sind Sie gewappnet für die nächsten Notebooks! Herzlichen Glückwunsch und viel Spaß mit den neu gewonnen Möglichkeiten durch ein frisch installiertes Python.</p>
+<p>Melden Sie sich gerne, wenn Sie Anmerkungen zu dieser Anleitung haben.</p>
+<hr class="docutils" />
+<div>Notebook erstellt von Arne-Lukas Fietkau, Yifei Li  und <a href="mailto:christoph.wagner@tu-dresden.de?Subject=Frage%20zu%20Jupyter%20Notebook%200.1%20Einführung" target="_top">Christoph Wagner</a></div></section>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "Berni96/tud-sv",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Einführung in Python"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='right-next' id="next-link" href="0.2%20-%20Einf%C3%BChrung_solved.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">0.2 - Einführung</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By SHK<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
