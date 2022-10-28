@@ -3,7 +3,7 @@
 from setuptools import setup
 
 setup(name='tudsv',
-      version='0.1',
+      version='0.3',
       description='Supplemental material for the lecture Signalverarbeitung '
                   'at TU Dresden',
       url='https://github.com/TUD-STKS/tud-sv',
