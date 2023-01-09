@@ -3,7 +3,7 @@
 # Only for Einführung-notebook at the moment!
 #
 
-numpy==1.22.0
+numpy==1.21.0
 scipy==1.5.2
 matplotlib==3.3.2
 watermark==2.0.2
